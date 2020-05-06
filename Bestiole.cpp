@@ -70,7 +70,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 }
 
 
-void Bestiole::bouge( int xLim, int yLim )
+void Bestiole::bouge( int xLim, int yLim, double coef )
 {
 
    double         nx, ny;
@@ -106,10 +106,10 @@ void Bestiole::bouge( int xLim, int yLim )
 }
 
 
-void Bestiole::action( Milieu & monMilieu )
+void Bestiole::action( Milieu & monMilieu, Bestiole* me )
 {
 
-   bouge( monMilieu.getWidth(), monMilieu.getHeight() );
+   bouge( monMilieu.getWidth(), monMilieu.getHeight(),1 );
 
 }
 

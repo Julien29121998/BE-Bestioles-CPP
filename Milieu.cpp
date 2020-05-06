@@ -33,7 +33,7 @@ void Milieu::step( void )
    for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
 
-      it->action( *this );
+      it->action( *this, &(*it) );
       it->draw( *this );
 
    } // for
