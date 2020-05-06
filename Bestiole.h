@@ -39,7 +39,7 @@ public :                                           // Forme canonique :
    Bestiole( const Bestiole & b );                 // Constructeur de copies
    ~Bestiole( void );                              // Destructeur
                                                    // Operateur d'affectation binaire par defaut
-   void action( Milieu & monMilieu, Bestiole* me );
+   void action( Milieu & monMilieu);
    void draw( UImg & support );
 
    bool jeTeVois( const Bestiole & b ) const;

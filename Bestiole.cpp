@@ -106,7 +106,7 @@ void Bestiole::bouge( int xLim, int yLim, double coef )
 }
 
 
-void Bestiole::action( Milieu & monMilieu, Bestiole* me )
+void Bestiole::action( Milieu & monMilieu)
 {
 
    bouge( monMilieu.getWidth(), monMilieu.getHeight(),1 );
