@@ -31,16 +31,15 @@ private :
 
    T               * couleur;
 
-private :
-   void bouge( int xLim, int yLim, double coef );
-
 public :                                           // Forme canonique :
-   Bestiole( void );                               // Constructeur par defaut
+   Bestiole();                               // Constructeur par defaut
    Bestiole( const Bestiole & b );                 // Constructeur de copies
-   ~Bestiole( void );                              // Destructeur
+   ~Bestiole();                              // Destructeur
                                                    // Operateur d'affectation binaire par defaut
    void action( Milieu & monMilieu);
    void draw( UImg & support );
+   void bouge( int xLim, int yLim, double coef );
+   char* showID() const;
 
    bool jeTeVois( const Bestiole & b ) const;
 

@@ -13,7 +13,7 @@ const double      Bestiole::LIMITE_VUE = 30.;
 int               Bestiole::next = 0;
 
 
-Bestiole::Bestiole( void )
+Bestiole::Bestiole()
 {
 
    identite = ++next;
@@ -51,7 +51,7 @@ Bestiole::Bestiole( const Bestiole & b )
 }
 
 
-Bestiole::~Bestiole( void )
+Bestiole::~Bestiole()
 {
 
    delete[] couleur;
@@ -113,6 +113,11 @@ void Bestiole::action( Milieu & monMilieu)
 
 }
 
+char* Bestiole::showID() const{
+   static char id[64];
+   sprintf(id, "%d", identite);
+   return id;
+}
 
 void Bestiole::draw( UImg & support )
 {
@@ -123,6 +128,11 @@ void Bestiole::draw( UImg & support )
 
    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
+   T* kindawhite = new T[ 3 ];
+   kindawhite[0]=230;
+   kindawhite[1]=230;
+   kindawhite[2]=230;
+   support.draw_text(x+AFF_SIZE,y+AFF_SIZE,this->showID(),couleur,kindawhite,1,AFF_SIZE*1.618);
 
 }
 

@@ -18,18 +18,18 @@ private :
    static const T          white[];
 
    int                     width, height;
-   std::vector<Bestiole>   listeBestioles;
+   std::vector<Bestiole*>   listeBestioles;
 
 public :
    Milieu( int _width, int _height );
-   ~Milieu( void );
+   ~Milieu();
 
-   int getWidth( void ) const { return width; };
-   int getHeight( void ) const { return height; };
+   int getWidth() const { return width; };
+   int getHeight() const { return height; };
 
-   void step( void );
+   void step();
 
-   void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
+   void addMember(Bestiole* b ) { listeBestioles.push_back(b); listeBestioles.back()->initCoords(width, height); }
    int nbVoisins( const Bestiole & b );
 
 };
