@@ -3,50 +3,40 @@
 
 
 #include "UImg.h"
-
+#include "DBestiole.h"
 #include <iostream>
+class Milieu;
 
 using namespace std;
 
-
-class Milieu;
-
-
-class Bestiole
+class Bestiole: public DBestiole
 {
-
 private :
-   static const double     AFF_SIZE;
-   static const double     MAX_VITESSE;
-   static const double     LIMITE_VUE;
-
-   static int              next;
-
-private :
-   int               identite;
+   unsigned int               age;
+   unsigned int         esperance;
    int               x, y;
    double            cumulX, cumulY;
    double            orientation;
    double            vitesse;
+   DBestiole*        coucheExterne;
 
    T               * couleur;
 
-public :                                           // Forme canonique :
-   Bestiole();                               // Constructeur par defaut
-   Bestiole( const Bestiole & b );                 // Constructeur de copies
-   ~Bestiole();                              // Destructeur
-                                                   // Operateur d'affectation binaire par defaut
-   void action( Milieu & monMilieu);
-   void draw( UImg & support );
-   void bouge( int xLim, int yLim, double coef );
-   char* showID() const;
-
-   bool jeTeVois( const Bestiole & b ) const;
-
-   void initCoords( int xLim, int yLim );
-
-   friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
-
+public :                                        
+   Bestiole();     
+   Bestiole(int _x, int _y,double _v, double _o, T* _couleur);                        
+   virtual ~Bestiole();                              
+   virtual void action( Milieu & monMilieu) override;
+   virtual void draw( UImg & support ) override;
+   virtual void bouge( int xLim, int yLim, double coef ) override;
+   virtual bool jeTeVois( const DBestiole* b ) const override;
+   virtual void initCoords( int xLim, int yLim ) override;
+   virtual double getVisibilite() const override;
+   virtual double getResist() const override;
+   virtual DBestiole* randomCloning() const override;
+   virtual bool vieillir() override;
+   virtual DBestiole* copy() override;
+   virtual void setExterne(DBestiole* p);
 };
 
 

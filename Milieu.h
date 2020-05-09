@@ -3,7 +3,7 @@
 
 
 #include "UImg.h"
-#include "Bestiole.h"
+#include "DBestiole.h"
 
 #include <iostream>
 #include <vector>
@@ -18,7 +18,7 @@ private :
    static const T          white[];
 
    int                     width, height;
-   std::vector<Bestiole*>   listeBestioles;
+   std::vector<DBestiole*>   listeBestioles;
 
 public :
    Milieu( int _width, int _height );
@@ -29,8 +29,8 @@ public :
 
    void step();
 
-   void addMember(Bestiole* b ) { listeBestioles.push_back(b); listeBestioles.back()->initCoords(width, height); }
-   int nbVoisins( const Bestiole & b );
+   void addMember(DBestiole* b ) { listeBestioles.push_back(b); listeBestioles.back()->initCoords(width, height); }
+   int nbVoisins( const DBestiole* b );
 
 };
 

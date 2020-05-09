@@ -1,52 +1,38 @@
 #include "Bestiole.h"
 
-#include "Milieu.h"
-
 #include <cstdlib>
 #include <cmath>
+#include "Milieu.h"
 
-
-const double      Bestiole::AFF_SIZE = 8.;
-const double      Bestiole::MAX_VITESSE = 10.;
-const double      Bestiole::LIMITE_VUE = 30.;
-
-int               Bestiole::next = 0;
-
-
-Bestiole::Bestiole()
+Bestiole::Bestiole(): DBestiole()
 {
 
-   identite = ++next;
-
-   cout << "const Bestiole (" << identite << ") par defaut" << endl;
+   cout << "const Bestiole par defaut" << endl;
 
    x = y = 0;
    cumulX = cumulY = 0.;
    orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
-
+   esperance =static_cast<int>( 0.75*LIFE) + rand()%static_cast<int>(0.5*LIFE);
+   age=0;
    couleur = new T[ 3 ];
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
 
 }
-
-
-Bestiole::Bestiole( const Bestiole & b )
+Bestiole::Bestiole(int _x, int _y,double _v, double _o, T* _couleur):DBestiole()
 {
-
-   identite = ++next;
-
-   cout << "const Bestiole (" << identite << ") par copie" << endl;
-
-   x = b.x;
-   y = b.y;
+   cout << "const Bestiole spécifique" << endl;
+   x = _x;
+   y = _y;
    cumulX = cumulY = 0.;
-   orientation = b.orientation;
-   vitesse = b.vitesse;
+   orientation = _o;
+   vitesse = _v;
+   esperance =static_cast<int>( 0.75*LIFE) + rand()%static_cast<int>(0.5*LIFE);
+   age=0;
    couleur = new T[ 3 ];
-   memcpy( couleur, b.couleur, 3*sizeof(T) );
+   memcpy( couleur,_couleur, 3*sizeof(T) );
 
 }
 
@@ -113,11 +99,6 @@ void Bestiole::action( Milieu & monMilieu)
 
 }
 
-char* Bestiole::showID() const{
-   static char id[64];
-   sprintf(id, "%d", identite);
-   return id;
-}
 
 void Bestiole::draw( UImg & support )
 {
@@ -129,29 +110,51 @@ void Bestiole::draw( UImg & support )
    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
    T* kindawhite = new T[ 3 ];
-   kindawhite[0]=230;
-   kindawhite[1]=230;
-   kindawhite[2]=230;
+   kindawhite[0]=241;
+   kindawhite[1]=241;
+   kindawhite[2]=241;
    support.draw_text(x+AFF_SIZE,y+AFF_SIZE,this->showID(),couleur,kindawhite,1,AFF_SIZE*1.618);
 
 }
 
 
-bool operator==( const Bestiole & b1, const Bestiole & b2 )
+bool Bestiole::jeTeVois( const DBestiole* b ) const
 {
 
-   return ( b1.identite == b2.identite );
-
+   //double         dist;
+   //dist = std::sqrt( (x-b.x)*(x-b.x) + (y-b.y)*(y-b.y) );
+   //return ( dist <= LIMITE_VUE );----> ancien code, à placer dans la focntion d'évaluation de distance des capteurs
+   return false;
 }
-
-
-bool Bestiole::jeTeVois( const Bestiole & b ) const
+double Bestiole::getVisibilite() const
 {
-
-   double         dist;
-
-
-   dist = std::sqrt( (x-b.x)*(x-b.x) + (y-b.y)*(y-b.y) );
-   return ( dist <= LIMITE_VUE );
-
+   return 1;
+}
+double Bestiole::getResist() const
+{
+   return 0;
+}
+DBestiole* Bestiole::randomCloning() const{
+   if(rand()%500==1){
+   DBestiole* b = coucheExterne->copy();
+   b->setExterne(b);
+      return b;
+   }
+   else{
+      return nullptr;
+   }
+}
+bool Bestiole::vieillir(){
+   age++;
+   if(age>=esperance){
+      delete coucheExterne;
+      return true;
+   }
+   return false;
+}
+DBestiole* Bestiole::copy(){
+   return new Bestiole(this->x,this->y,this->vitesse,this->orientation,this->couleur);
+}
+void Bestiole::setExterne(DBestiole* p){
+   coucheExterne= p;
 }

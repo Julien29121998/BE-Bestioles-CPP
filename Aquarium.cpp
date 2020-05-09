@@ -8,6 +8,7 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
 
    int         screenWidth = 1280; //screen_width();
    int         screenHeight = 1024; //screen_height();
+   paused = false;
 
 
    cout << "const Aquarium" << endl;
@@ -43,14 +44,15 @@ void Aquarium::run( void )
       if ( is_key() ) {
          cout << "Vous avez presse la touche " << static_cast<unsigned char>( key() );
          cout << " (" << key() << ")" << endl;
-         if ( is_keyESC() ) close();
+         if ( is_keyESC() ){close();}
+         if ( is_keySPACE() ){paused=!paused;wait(10*delay);}
       }
-
+      if(!paused){
       flotte->step();
+      }
       display( *flotte );
-
       wait( delay );
-
+      
    } // while
 
 }
