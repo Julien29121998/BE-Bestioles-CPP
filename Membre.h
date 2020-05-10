@@ -1,6 +1,5 @@
-#ifndef _BESTIOLES_H_
-#define _BESTIOLES_H_
-
+#ifndef _MEMBRE_H_
+#define _MEMBRE_H_
 
 #include "UImg.h"
 #include "DBestiole.h"
@@ -9,23 +8,14 @@ class Milieu;
 
 using namespace std;
 
-class Bestiole: public DBestiole
+class Membre: public DBestiole
 {
 private :
-   unsigned int               age;
-   unsigned int         esperance;
-   int               x, y;
-   double            cumulX, cumulY;
-   double            orientation;
-   double            vitesse;
-   DBestiole*        coucheExterne;
-
-   T               * couleur;
+   DBestiole*        mybestiole;
 
 public :                                        
-   Bestiole();     
-   Bestiole(int _x, int _y,double _v, double _o, T* _couleur);                        
-   virtual ~Bestiole();                              
+   Membre(DBestiole* dbestiole);     
+   virtual ~Membre();                              
    virtual void action( Milieu & monMilieu) override;
    virtual void draw( UImg & support ) override;
    virtual void bouge( int xLim, int yLim, double coef ) override;
@@ -38,6 +28,5 @@ public :
    virtual DBestiole* copy() override;
    virtual void setExterne(DBestiole* p) override;
 };
-
 
 #endif
