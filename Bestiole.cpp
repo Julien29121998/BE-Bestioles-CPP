@@ -13,7 +13,7 @@ Bestiole::Bestiole(): DBestiole()
    cumulX = cumulY = 0.;
    orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
-   esperance =static_cast<int>( 0.75*LIFE) + rand()%static_cast<int>(0.5*LIFE);
+   esperance =static_cast<int>( 0.6667*LIFE) + rand()%static_cast<int>(0.3333*LIFE);
    age=0;
    couleur = new T[ 3 ];
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
@@ -135,7 +135,7 @@ double Bestiole::getResist() const
    return 0;
 }
 DBestiole* Bestiole::randomCloning() const{
-   if(rand()%500==1){
+   if(rand()%CLONE_RATE==1){
    DBestiole* b = coucheExterne->copy();
    b->setExterne(b);
       return b;
