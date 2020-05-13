@@ -1,5 +1,6 @@
 #include "Aquarium.h"
 #include "Milieu.h"
+#include "DBestiole.h"
 #include "Bestiole.h"
 #include "Membre.h"
 #include "Camouflages.h"
@@ -11,14 +12,17 @@ using namespace std;
 
 int main()
 {
-
+   Bparams_t params;
    Aquarium       ecosysteme( 640, 480, 30 );
 
-   for ( int i = 1; i <= 20; ++i ){
-      DBestiole* bo = new Camouflages(new Bestiole(),0.2);
-      bo->setExterne(bo);
-      ecosysteme.getMilieu().addMember(bo);
-   }
+   memset(&params,0,sizeof(params));
+   ecosysteme.getMilieu().Introduire(10,params);
+
+   memset(&params,0,sizeof(params));
+   Camop_t ct;
+   ct.phi=0.2;
+   params.camo=&ct;
+   ecosysteme.getMilieu().Introduire(10,params);
    ecosysteme.run();
 
 

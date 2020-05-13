@@ -6,9 +6,8 @@
 
 Bestiole::Bestiole(): DBestiole()
 {
-
    cout << "const Bestiole par defaut" << endl;
-
+   
    x = y = 0;
    cumulX = cumulY = 0.;
    orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
@@ -19,7 +18,6 @@ Bestiole::Bestiole(): DBestiole()
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-
 }
 Bestiole::Bestiole(int _x, int _y,double _v, double _o, T* _couleur):DBestiole()
 {
@@ -113,7 +111,7 @@ void Bestiole::draw( UImg & support )
    kindawhite[0]=241;
    kindawhite[1]=241;
    kindawhite[2]=241;
-   support.draw_text(x+AFF_SIZE,y+AFF_SIZE,this->showID(),couleur,kindawhite,1,AFF_SIZE*1.618);
+   support.draw_text(x+AFF_SIZE,y+AFF_SIZE,this->coucheExterne->showID(),couleur,kindawhite,1,AFF_SIZE*1.618);
 
 }
 
@@ -164,4 +162,7 @@ paire_t Bestiole::getCoords() const{
    res.y=this->y;
    res.ori=this->orientation;
    return res;
+}
+void Bestiole::killMe(){
+   this->age+=this->esperance;
 }

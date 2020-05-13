@@ -49,3 +49,6 @@ DBestiole* Membre::copy()
 {
    return mybestiole->copy();
 }
+void Membre::killMe(){
+    mybestiole->killMe();
+}

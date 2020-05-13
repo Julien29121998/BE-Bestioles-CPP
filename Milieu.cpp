@@ -78,3 +78,23 @@ int Milieu::nbVoisins( const DBestiole*  b )
    return nb;
 
 }
+
+void Milieu::kill(int id){
+   for(std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it){
+      if(((*it)->identite)==id){
+         (*it)->killMe();
+      }
+   }
+}
+
+void Milieu::Introduire(int combien, BestiolesParams params){
+   for(int i=0; i<combien;i++){
+      DBestiole* bo = new Bestiole();
+      DBestiole* lowest_layer = bo;
+      if(params.camo!=NULL){
+         bo = new Camouflages(bo,params.camo->phi);
+      }
+      lowest_layer->setExterne(bo);
+      this->addMember(bo);
+   }
+}

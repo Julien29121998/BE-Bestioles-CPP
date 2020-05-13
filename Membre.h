@@ -28,6 +28,7 @@ public :
    virtual DBestiole* copy() override;
    virtual void setExterne(DBestiole* p) override;
    virtual paire_t getCoords() const override;
+   virtual void killMe() override;
 };
 
 #endif

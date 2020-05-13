@@ -15,7 +15,7 @@ typedef struct paire {
 } paire_t;
 
 class DBestiole{
-
+friend class Milieu;
 protected :
    static const double     AFF_SIZE;
    static const double     MAX_VITESSE;
@@ -43,6 +43,7 @@ public :
    virtual void setExterne(DBestiole* p)=0;
    virtual DBestiole* copy()=0;
    virtual paire_t getCoords() const=0;
+   virtual void killMe()=0;
 };
 
 

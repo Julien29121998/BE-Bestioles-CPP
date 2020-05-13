@@ -4,12 +4,22 @@
 
 #include "UImg.h"
 #include "DBestiole.h"
+#include "Bestiole.h"
+#include "Membre.h"
+#include "Camouflages.h"
 
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
+typedef struct CamoParams{
+   double phi;
+} Camop_t;
+
+typedef struct BestiolesParams{
+   Camop_t* camo;   
+} Bparams_t;
 
 class Milieu : public UImg
 {
@@ -31,6 +41,8 @@ public :
 
    void addMember(DBestiole* b ) { listeBestioles.push_back(b); listeBestioles.back()->initCoords(width, height); }
    int nbVoisins( const DBestiole* b );
+   void kill(int id);
+   void Introduire(int combien,Bparams_t params);
 
 };
 
