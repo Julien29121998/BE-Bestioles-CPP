@@ -2,6 +2,7 @@
 #include "Milieu.h"
 #include "Bestiole.h"
 #include "Membre.h"
+#include "Camouflages.h"
 
 #include <iostream>
 
@@ -14,7 +15,7 @@ int main()
    Aquarium       ecosysteme( 640, 480, 30 );
 
    for ( int i = 1; i <= 20; ++i ){
-      DBestiole* bo = new Membre(new Bestiole());
+      DBestiole* bo = new Camouflages(new Bestiole());
       bo->setExterne(bo);
       ecosysteme.getMilieu().addMember(bo);
    }
