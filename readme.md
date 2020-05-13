@@ -21,4 +21,5 @@
 <ul>
     <li><b style="color: black; background: white">spacebar</b> (dans le programme de simulation) Pour mettre la simulation en pause, ou remettre en route </li>
     <li><b style="color: black; background: white">k</b> (dans le programme de simulation) Pour activer l'utilitaire de suppression de créatures. Il faut alors ensuite écrire dans la console le numéro de la Bestiole à tuer. Un faux numéro annule la commande. La commande met automatiquement la simulation en pause. Réactivez avec <b style="color: black; background: white">spacebar</b></li>
+    <li><b style="color: black; background: white">Esc</b> (dans le programme de simulation)Interrompre définitivement la Simulation</li>
 </ul>

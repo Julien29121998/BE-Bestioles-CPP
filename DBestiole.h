@@ -19,6 +19,7 @@ friend class Milieu;
 protected :
    static const double     AFF_SIZE;
    static const double     MAX_VITESSE;
+   static const double     LIMITE_PHI;
    static const double     LIMITE_VUE;
    static const int        LIFE;
    static const int        CLONE_RATE;

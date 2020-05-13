@@ -7,7 +7,7 @@
 Bestiole::Bestiole(): DBestiole()
 {
    cout << "const Bestiole par defaut" << endl;
-   
+
    x = y = 0;
    cumulX = cumulY = 0.;
    orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
@@ -56,6 +56,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 
 void Bestiole::bouge( int xLim, int yLim, double coef )
 {
+   vitesse=coef*((vitesse>=MAX_VITESSE)?(MAX_VITESSE):(vitesse));
 
    double         nx, ny;
    double         dx = cos( orientation )*vitesse;
