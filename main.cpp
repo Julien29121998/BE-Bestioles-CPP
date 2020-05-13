@@ -23,7 +23,7 @@ int main()
    Camop_t ct;
    Nagp_t nt;
    ct.phi=0.2;
-   nt.nu=0.9;
+   nt.nu=4.4;
    params.camo=&ct;
    params.nag=&nt;
    ecosysteme.getMilieu().Introduire(10,params);

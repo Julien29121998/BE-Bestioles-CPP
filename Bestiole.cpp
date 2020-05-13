@@ -56,7 +56,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 
 void Bestiole::bouge( int xLim, int yLim, double coef )
 {
-   vitesse=coef*((vitesse>=MAX_VITESSE)?(MAX_VITESSE):(vitesse));
+   vitesse=coef*((vitesse>=MAX_VITESSE)?MAX_VITESSE:vitesse);
 
    double         nx, ny;
    double         dx = cos( orientation )*vitesse;

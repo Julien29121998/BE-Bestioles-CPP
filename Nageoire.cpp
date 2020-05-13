@@ -4,7 +4,7 @@
 #include <cmath>
 #include "Milieu.h"
 
-Nageoire::Nageoire(DBestiole* dbestiole,double nu):Membre(dbestiole),nu(((nu>=MAX_NU)?MAX_NU:nu))
+Nageoire::Nageoire(DBestiole* dbestiole,double nu):Membre(dbestiole),nu(((nu>MAX_NU)?MAX_NU:((nu<1)?1:nu)))
 {
    cout<<"const Nageoire"<<endl;
 }     
@@ -31,7 +31,7 @@ void Nageoire::draw( UImg & support )
 
 }
 void Nageoire::bouge(int xLim,int yLim,double coef){
-   Membre::bouge(xLim,yLim, (nu+1) * coef);
+   Membre::bouge(xLim,yLim, nu * coef);
 }
 
 DBestiole* Nageoire::copy()

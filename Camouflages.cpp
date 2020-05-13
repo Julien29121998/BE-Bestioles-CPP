@@ -4,7 +4,7 @@
 #include <cmath>
 #include "Milieu.h"
 
-Camouflages::Camouflages(DBestiole* dbestiole,double phi):Membre(dbestiole),phi(((phi>=LIMITE_PHI)?LIMITE_PHI:phi))
+Camouflages::Camouflages(DBestiole* dbestiole,double phi):Membre(dbestiole),phi(((phi>LIMITE_PHI)?LIMITE_PHI:((phi<0)?0:phi)))
 {
    cout<<"const Camouflages"<<endl;
 }     
