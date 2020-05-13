@@ -10,7 +10,7 @@ using namespace std;
 
 class Membre: public DBestiole
 {
-private :
+protected :
    DBestiole*        mybestiole;
 
 public :                                        

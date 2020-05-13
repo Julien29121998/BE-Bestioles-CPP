@@ -14,7 +14,7 @@ class Camouflages: public Membre
 private:
    int phi;
 public :                                        
-   Camouflages(DBestiole* dbestiole);     
+   Camouflages(DBestiole* dbestiole,int phi);     
    virtual ~Camouflages();                              
    virtual void draw( UImg & support ) override;
    virtual double getVisibilite() const override;
