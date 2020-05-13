@@ -158,3 +158,8 @@ DBestiole* Bestiole::copy(){
 void Bestiole::setExterne(DBestiole* p){
    coucheExterne= p;
 }
+paire_t Bestiole::getCoords() const{
+   paire_t res;
+   res.x=this->x;
+   res.y=this->y;
+}

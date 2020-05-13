@@ -42,3 +42,6 @@ bool Membre::vieillir(){
 void Membre::setExterne(DBestiole* p){
     mybestiole->setExterne(p);
 }
+paire_t Membre::getCoords() const{
+    return mybestiole->getCoords();
+}

@@ -27,6 +27,7 @@ public :
    virtual bool vieillir() override;
    virtual DBestiole* copy() override=0;
    virtual void setExterne(DBestiole* p) override;
+   virtual paire_t getCoords() const override;
 };
 
 #endif

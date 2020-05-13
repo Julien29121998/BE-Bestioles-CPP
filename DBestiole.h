@@ -7,7 +7,10 @@
 #include <iostream>
 using namespace std;
 class Milieu;
-
+typedef struct paire {
+   int x;
+   int y;
+} paire_t;
 
 class DBestiole{
 
@@ -37,6 +40,7 @@ public :
    virtual bool vieillir()=0;
    virtual void setExterne(DBestiole* p)=0;
    virtual DBestiole* copy()=0;
+   virtual paire_t getCoords() const=0;
 };
 
 
