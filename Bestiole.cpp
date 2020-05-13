@@ -162,5 +162,6 @@ paire_t Bestiole::getCoords() const{
    paire_t res;
    res.x=this->x;
    res.y=this->y;
+   res.ori=this->orientation;
    return res;
 }

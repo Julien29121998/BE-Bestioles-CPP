@@ -16,6 +16,7 @@ Camouflages::~Camouflages()
 void Camouflages::draw( UImg & support )
 {
    Membre::draw(support);
+   paire_t coords = Membre::getCoords();
 }
 double Camouflages::getVisibilite() const
 {

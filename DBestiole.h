@@ -10,6 +10,8 @@ class Milieu;
 typedef struct paire {
    int x;
    int y;
+   double ori;
+
 } paire_t;
 
 class DBestiole{
