@@ -10,7 +10,7 @@ using namespace std;
 
 class Membre: public DBestiole
 {
-protected :
+private :
    DBestiole*        mybestiole;
 
 public :                                        
@@ -25,7 +25,7 @@ public :
    virtual double getResist() const override;
    virtual DBestiole* randomCloning() const override;
    virtual bool vieillir() override;
-   virtual DBestiole* copy() override=0;
+   virtual DBestiole* copy() override;
    virtual void setExterne(DBestiole* p) override;
    virtual paire_t getCoords() const override;
 };

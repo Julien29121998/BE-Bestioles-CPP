@@ -15,12 +15,13 @@ Camouflages::~Camouflages()
 }                              
 void Camouflages::draw( UImg & support )
 {
+   Membre::draw(support);
 }
 double Camouflages::getVisibilite() const
 {
-   return phi;
+   return phi+Membre::getVisibilite();
 }
 DBestiole* Camouflages::copy()
 {
-   return new Camouflages(this->mybestiole->copy(),phi);
+   return new Camouflages(Membre::copy(),phi);
 }

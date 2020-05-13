@@ -45,3 +45,7 @@ void Membre::setExterne(DBestiole* p){
 paire_t Membre::getCoords() const{
     return mybestiole->getCoords();
 }
+DBestiole* Membre::copy()
+{
+   return mybestiole->copy();
+}
