@@ -5,6 +5,7 @@
 #include "Membre.h"
 #include "Camouflages.h"
 #include "Nageoire.h"
+#include "Carapace.h"
 
 #include <iostream>
 
@@ -17,16 +18,27 @@ int main()
    Aquarium       ecosysteme( 640, 480, 30 );
 
    memset(&params,0,sizeof(params));
-   ecosysteme.getMilieu().Introduire(10,params);
+   ecosysteme.getMilieu().Introduire(8,params);
 
    memset(&params,0,sizeof(params));
    Camop_t ct;
    Nagp_t nt;
+   Carapp_t cpt;
+   cpt.eta = 2.;
+   cpt.omega = 2.8;
    ct.phi=0.2;
-   nt.nu=4.4;
+   nt.nu=1.4;
    params.camo=&ct;
    params.nag=&nt;
-   ecosysteme.getMilieu().Introduire(10,params);
+   params.cara=&cpt;
+   ecosysteme.getMilieu().Introduire(8,params);
+
+   memset(&params,0,sizeof(params));
+   cpt.eta = 1.1;
+   cpt.omega = 1.6;
+   params.cara=&cpt;
+   ecosysteme.getMilieu().Introduire(8,params);
+
    ecosysteme.run();
 
 

@@ -97,6 +97,9 @@ void Milieu::Introduire(int combien, BestiolesParams params){
       if(params.nag!=NULL){
          bo = new Nageoire(bo,params.nag->nu);
       }
+      if(params.cara!=NULL){
+         bo = new Carapace(bo,params.cara->omega,params.cara->eta);
+      }
       lowest_layer->setExterne(bo);
       this->addMember(bo);
    }

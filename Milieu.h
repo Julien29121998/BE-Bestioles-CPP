@@ -8,6 +8,7 @@
 #include "Membre.h"
 #include "Camouflages.h"
 #include "Nageoire.h"
+#include "Carapace.h"
 
 
 #include <iostream>
@@ -21,10 +22,15 @@ typedef struct CamoParams{
 typedef struct NageoParams{
    double nu;
 } Nagp_t;
+typedef struct CaraParams{
+   double omega;
+   double eta;
+} Carapp_t;
 
 typedef struct BestiolesParams{
    Camop_t* camo;  
    Nagp_t* nag; 
+   Carapp_t* cara;
 } Bparams_t;
 
 class Milieu : public UImg

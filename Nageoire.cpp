@@ -18,9 +18,9 @@ void Nageoire::draw( UImg & support )
    Membre::draw(support);
    paire_t coords = Membre::getCoords();
    T* grey = new T[ 3 ];
-   grey[0]=92;
-   grey[1]=92;
-   grey[2]=92;
+   grey[0]=92+38*(1-nu/MAX_NU);
+   grey[1]=92+38*(1-nu/MAX_NU);
+   grey[2]=92+38*(1-nu/MAX_NU);
    double xq = coords.x - cos( coords.ori)*AFF_SIZE/1.1;
    double yq = coords.y + sin( coords.ori)*AFF_SIZE/1.1;
    double xm = xq - cos( coords.ori)*AFF_SIZE/2.1;
