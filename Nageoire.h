@@ -1,5 +1,5 @@
-#ifndef _CAMO_H_
-#define _CAMO_H_
+#ifndef _NAG_H_
+#define _NAG_H_
 
 #include "UImg.h"
 #include "DBestiole.h"
@@ -9,15 +9,15 @@ class Milieu;
 
 using namespace std;
 
-class Camouflages: public Membre
+class Nageoire: public Membre
 {
 private:
-   int phi;
+   double nu;
 public :                                        
-   Camouflages(DBestiole* dbestiole,double phi);     
-   virtual ~Camouflages();                              
+   Nageoire(DBestiole* dbestiole,double nu);     
+   virtual ~Nageoire();                              
    virtual void draw( UImg & support ) override;
-   virtual double getVisibilite() const override;
+   virtual void bouge(int xLim,int yLim,double coef) override;
    virtual DBestiole* copy() override;
 };
 

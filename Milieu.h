@@ -7,6 +7,8 @@
 #include "Bestiole.h"
 #include "Membre.h"
 #include "Camouflages.h"
+#include "Nageoire.h"
+
 
 #include <iostream>
 #include <vector>
@@ -16,9 +18,13 @@ using namespace std;
 typedef struct CamoParams{
    double phi;
 } Camop_t;
+typedef struct NageoParams{
+   double nu;
+} Nagp_t;
 
 typedef struct BestiolesParams{
-   Camop_t* camo;   
+   Camop_t* camo;  
+   Nagp_t* nag; 
 } Bparams_t;
 
 class Milieu : public UImg

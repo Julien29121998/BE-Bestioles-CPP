@@ -1,7 +1,7 @@
 all: main author info
 
-main : main.cpp Aquarium.o DBestiole.o Bestiole.o Milieu.o Membre.o Camouflages.o
-	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o DBestiole.o Bestiole.o Membre.o Camouflages.o Milieu.o -I . -lX11 -lpthread
+main : main.cpp Aquarium.o DBestiole.o Bestiole.o Milieu.o Membre.o Camouflages.o Nageoire.o
+	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o DBestiole.o Bestiole.o Membre.o Camouflages.o Nageoire.o Milieu.o -I . -lX11 -lpthread
 
 Aquarium.o : Aquarium.h Aquarium.cpp
 	g++ -Wall -std=c++11  -c Aquarium.cpp -I .
@@ -15,6 +15,9 @@ Membre.o : Membre.h Membre.cpp
 Camouflages.o : Camouflages.h Camouflages.cpp
 	g++ -Wall -std=c++11 -c Camouflages.cpp -I .
 
+Nageoire.o : Nageoire.h Nageoire.cpp
+	g++ -Wall -std=c++11 -c Nageoire.cpp -I .
+	
 DBestiole.o : DBestiole.h DBestiole.cpp
 	g++ -Wall -std=c++11  -c DBestiole.cpp -I .
 

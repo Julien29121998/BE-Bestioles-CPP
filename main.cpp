@@ -4,6 +4,7 @@
 #include "Bestiole.h"
 #include "Membre.h"
 #include "Camouflages.h"
+#include "Nageoire.h"
 
 #include <iostream>
 
@@ -20,8 +21,11 @@ int main()
 
    memset(&params,0,sizeof(params));
    Camop_t ct;
+   Nagp_t nt;
    ct.phi=0.2;
+   nt.nu=0.9;
    params.camo=&ct;
+   params.nag=&nt;
    ecosysteme.getMilieu().Introduire(10,params);
    ecosysteme.run();
 
