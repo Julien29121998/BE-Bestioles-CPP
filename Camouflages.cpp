@@ -16,7 +16,7 @@ Camouflages::~Camouflages()
 void Camouflages::draw( UImg & support )
 {
    Membre::draw(support);
-   paire_t coords = Membre::getCoords();
+   paire_t coords = getCoords();
    T* green = new T[ 3 ];
    green[0]=static_cast<int>(68*(1-phi));
    green[1]=static_cast<int>(218*(1-phi));

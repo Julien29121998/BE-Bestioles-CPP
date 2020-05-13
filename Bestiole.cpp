@@ -119,10 +119,6 @@ void Bestiole::draw( UImg & support )
 
 bool Bestiole::jeTeVois( const DBestiole* b ) const
 {
-
-   //double         dist;
-   //dist = std::sqrt( (x-b.x)*(x-b.x) + (y-b.y)*(y-b.y) );
-   //return ( dist <= LIMITE_VUE );----> ancien code, à placer dans la focntion d'évaluation de distance des capteurs
    return false;
 }
 double Bestiole::getVisibilite() const

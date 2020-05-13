@@ -6,6 +6,8 @@
 #include "Camouflages.h"
 #include "Nageoire.h"
 #include "Carapace.h"
+#include "Capteur.h"
+#include "Oreilles.h"
 
 #include <iostream>
 
@@ -27,16 +29,20 @@ int main()
    cpt.eta = 2.;
    cpt.omega = 2.8;
    ct.phi=0.2;
-   nt.nu=1.4;
+   nt.nu=2.4;
    params.camo=&ct;
    params.nag=&nt;
    params.cara=&cpt;
    ecosysteme.getMilieu().Introduire(8,params);
 
    memset(&params,0,sizeof(params));
+   Orp_t orpt;
+   orpt.delta=8.0;
+   orpt.gamma=0.4;
    cpt.eta = 1.1;
    cpt.omega = 1.6;
    params.cara=&cpt;
+   params.orei=&orpt;
    ecosysteme.getMilieu().Introduire(8,params);
 
    ecosysteme.run();

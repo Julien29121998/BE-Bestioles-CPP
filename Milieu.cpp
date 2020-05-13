@@ -100,6 +100,9 @@ void Milieu::Introduire(int combien, BestiolesParams params){
       if(params.cara!=NULL){
          bo = new Carapace(bo,params.cara->omega,params.cara->eta);
       }
+      if(params.orei!=NULL){
+         bo = new Oreilles(bo,params.orei->delta,params.orei->gamma);
+      }
       lowest_layer->setExterne(bo);
       this->addMember(bo);
    }

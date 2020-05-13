@@ -16,7 +16,7 @@ Nageoire::~Nageoire()
 void Nageoire::draw( UImg & support )
 {
    Membre::draw(support);
-   paire_t coords = Membre::getCoords();
+   paire_t coords = getCoords();
    T* grey = new T[ 3 ];
    grey[0]=92+38*(1-nu/MAX_NU);
    grey[1]=92+38*(1-nu/MAX_NU);
@@ -25,9 +25,9 @@ void Nageoire::draw( UImg & support )
    double yq = coords.y + sin( coords.ori)*AFF_SIZE/1.1;
    double xm = xq - cos( coords.ori)*AFF_SIZE/2.1;
    double ym = yq + sin( coords.ori)*AFF_SIZE/2.1;
-   double xt = sin(coords.ori)*AFF_SIZE/3.4;
-   double yt = cos(coords.ori)*AFF_SIZE/3.4;
-   support.draw_triangle(xq,yq,xm+xt,ym+yt,xm-xt,ym-yt,grey);
+   double xd = sin(coords.ori)*AFF_SIZE/3.4;
+   double yd = cos(coords.ori)*AFF_SIZE/3.4;
+   support.draw_triangle(xq,yq,xm+xd,ym+yd,xm-xd,ym-yd,grey);
 
 }
 void Nageoire::bouge(int xLim,int yLim,double coef){

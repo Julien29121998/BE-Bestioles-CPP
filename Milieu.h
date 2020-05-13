@@ -5,11 +5,10 @@
 #include "UImg.h"
 #include "DBestiole.h"
 #include "Bestiole.h"
-#include "Membre.h"
 #include "Camouflages.h"
 #include "Nageoire.h"
 #include "Carapace.h"
-
+#include "Oreilles.h"
 
 #include <iostream>
 #include <vector>
@@ -26,11 +25,16 @@ typedef struct CaraParams{
    double omega;
    double eta;
 } Carapp_t;
+typedef struct OreParams{
+   double delta;
+   double gamma;
+} Orp_t;
 
 typedef struct BestiolesParams{
    Camop_t* camo;  
    Nagp_t* nag; 
    Carapp_t* cara;
+   Orp_t* orei;
 } Bparams_t;
 
 class Milieu : public UImg

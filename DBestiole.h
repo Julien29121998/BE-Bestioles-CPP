@@ -21,6 +21,10 @@ protected :
    static const double     MAX_VITESSE;
    static const double     MAX_PHI;
    static const double     MIN_PHI;
+   static const double     MAX_DELTA_O;
+   static const double     MIN_DELTA_O;
+   static const double     MAX_GAMMA_O;
+   static const double     MIN_GAMMA_O;
    static const double     MAX_NU;
    static const double     MAX_OMEGA;
    static const double     MAX_ETA;

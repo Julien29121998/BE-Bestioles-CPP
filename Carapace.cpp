@@ -18,7 +18,7 @@ Carapace::~Carapace()
 void Carapace::draw( UImg & support )
 {
    Membre::draw(support);
-   paire_t coords = Membre::getCoords();
+   paire_t coords = getCoords();
    T* lightbrown = new T[ 3 ];
    lightbrown[0]=150-38*(omega/MAX_OMEGA);
    lightbrown[1]=112;
