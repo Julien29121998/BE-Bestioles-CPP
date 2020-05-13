@@ -128,7 +128,7 @@ bool Bestiole::jeTeVois( const DBestiole* b ) const
 }
 double Bestiole::getVisibilite() const
 {
-   return 1;
+   return 0;
 }
 double Bestiole::getResist() const
 {

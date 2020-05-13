@@ -25,7 +25,7 @@ public :
    virtual double getResist() const override;
    virtual DBestiole* randomCloning() const override;
    virtual bool vieillir() override;
-   virtual DBestiole* copy() override;
+   virtual DBestiole* copy() override=0;
    virtual void setExterne(DBestiole* p) override;
 };
 

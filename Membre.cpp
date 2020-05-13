@@ -39,9 +39,6 @@ DBestiole* Membre::randomCloning() const{
 bool Membre::vieillir(){
     return(mybestiole->vieillir());
 }
-DBestiole* Membre::copy(){
-    return(new Membre(mybestiole->copy()));//A CHANGER ENSUITE
-}
 void Membre::setExterne(DBestiole* p){
     mybestiole->setExterne(p);
 }
