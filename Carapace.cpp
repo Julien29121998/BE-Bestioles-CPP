@@ -12,7 +12,7 @@ eta(((eta>MAX_ETA)?MAX_ETA:((eta<1)?1:eta)))
 }     
 Carapace::~Carapace()
 {
-   cout<<"dest Carapace"<<endl;
+   cout<<"dest Carapace et ";
 
 }                              
 void Carapace::draw( UImg & support )

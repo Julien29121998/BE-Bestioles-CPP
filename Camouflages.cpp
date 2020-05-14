@@ -10,7 +10,7 @@ Camouflages::Camouflages(DBestiole* dbestiole,double phi):Membre(dbestiole),phi(
 }     
 Camouflages::~Camouflages()
 {
-   cout<<"dest Camouflages"<<endl;
+   cout<<"dest Camouflages et ";
 
 }                              
 void Camouflages::draw( UImg & support )
@@ -18,12 +18,12 @@ void Camouflages::draw( UImg & support )
    Membre::draw(support);
    paire_t coords = getCoords();
    T* green = new T[ 3 ];
-   green[0]=static_cast<int>(68*(1-phi));
-   green[1]=static_cast<int>(218*(1-phi));
-   green[2]=static_cast<int>(66*(1-phi));
-   double xc = coords.x - cos( coords.ori )*AFF_SIZE/1.7;
-   double yc = coords.y + sin( coords.ori )*AFF_SIZE/1.7;
-   support.draw_ellipse( xc, yc, AFF_SIZE/3.1, AFF_SIZE/3.6, -coords.ori/M_PI*180.,green);
+   green[0]=static_cast<int>(68*(1-phi/2));
+   green[1]=static_cast<int>(218*(1-phi/2));
+   green[2]=static_cast<int>(66*(1-phi/2));
+   double xc = coords.x - cos( coords.ori )*AFF_SIZE/1.6;
+   double yc = coords.y - sin( coords.ori )*AFF_SIZE/1.6;
+   support.draw_ellipse( xc, yc, AFF_SIZE/3.1, AFF_SIZE/3.7, coords.ori/M_PI*180.,green);
 }
 double Camouflages::getVisibilite() const
 {

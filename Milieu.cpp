@@ -33,29 +33,37 @@ Milieu::~Milieu()
 
 void Milieu::step()
 {
-   std::vector<DBestiole*> toDelete;
+   int pos;
+   std::vector<int> toDelete;
    std::vector<DBestiole*> toAdd;
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
-   for ( std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   std::vector<DBestiole*>::iterator beginit = listeBestioles.begin();
+   for ( std::vector<DBestiole*>::iterator it = beginit ; it != listeBestioles.end() ; ++it )
    {
-
+      
       (*it)->action( *this);
       (*it)->draw( *this );
+      this->nbVoisins(*it);
       DBestiole* newborn = (*it)->randomCloning();
       if(newborn!=nullptr){
          toAdd.push_back(newborn);
       }
       if((*it)->vieillir()){
-         toDelete.push_back(*it);
+         toDelete.push_back(it-beginit);
       }
 
    }
-   for ( std::vector<DBestiole*>::iterator d_it = toDelete.begin() ; d_it != toDelete.end() ; ++d_it )
-   {
-      auto f_it=find(listeBestioles.begin(),listeBestioles.end(),*d_it);
-      listeBestioles.erase(f_it);
+   pos=0;
+   for(std::vector<DBestiole*>::iterator t_it = beginit;t_it!=listeBestioles.end();++t_it){
+      if(find(toDelete.begin(),toDelete.end(),pos++)==toDelete.end()){
+         toAdd.push_back(*t_it);
+      }
+      else{
+         delete *t_it;
+      }
    }
    toDelete.erase(toDelete.begin(),toDelete.end());
+   listeBestioles.erase(beginit,listeBestioles.end());
    for ( std::vector<DBestiole*>::iterator a_it = toAdd.begin() ; a_it != toAdd.end() ; ++a_it )
    {
       listeBestioles.push_back(*a_it);
@@ -72,8 +80,10 @@ int Milieu::nbVoisins( const DBestiole*  b )
 
 
    for ( std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
-      if ( !(b == *it) && b->jeTeVois(*it) )
+      if ( !(b == *it) && b->jeTeVois(*it)) {
+         cout<<b->showID()<<" voit "<<(*it)->showID()<<endl;
          ++nb;
+      }
 
    return nb;
 
@@ -102,6 +112,9 @@ void Milieu::Introduire(int combien, BestiolesParams params){
       }
       if(params.orei!=NULL){
          bo = new Oreilles(bo,params.orei->delta,params.orei->gamma);
+      }
+      if(params.yeux!=NULL){
+         bo = new Yeux(bo,params.yeux->delta,params.yeux->gamma,params.yeux->alpha);
       }
       lowest_layer->setExterne(bo);
       this->addMember(bo);

@@ -13,7 +13,7 @@ Capteur(dbestiole,
 }     
 Oreilles::~Oreilles()
 {
-   cout<<"dest Oreilles"<<endl;
+   cout<<"dest Oreilles et ";
 
 }                              
 bool Oreilles::jeTeVois(const DBestiole* b) const{
@@ -25,11 +25,11 @@ DBestiole* Oreilles::copy()
 }
 void Oreilles::draw( UImg & support )
 {
-   Membre::draw(support);
+   Capteur::draw(support);
    paire_t coords = getCoords();
    double xt = coords.x + cos(coords.ori)*AFF_SIZE/2.1;
-   double yt = coords.y - sin(coords.ori)*AFF_SIZE/2.1;
-   double xd = sin(coords.ori)*AFF_SIZE/1.8;
+   double yt = coords.y + sin(coords.ori)*AFF_SIZE/2.1;
+   double xd = -sin(coords.ori)*AFF_SIZE/1.8;
    double yd = cos(coords.ori)*AFF_SIZE/1.8;
    T* red = new T[ 3 ];
    red[0]=182;

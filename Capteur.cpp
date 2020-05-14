@@ -6,11 +6,11 @@
 
 Capteur::Capteur(DBestiole* dbestiole,double delta, double gamma):Membre(dbestiole),delta(delta),gamma(gamma)
 {
-   cout<<"const Capteur"<<endl;
+   cout<<"const Capteur : ";
 }     
 Capteur::~Capteur()
 {
-   cout<<"dest Capteur"<<endl;
+   cout<<"dest Capteur et ";
 
 }
 bool Capteur::assezProche(const DBestiole* that)const{

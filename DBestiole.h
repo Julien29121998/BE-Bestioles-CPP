@@ -25,16 +25,21 @@ protected :
    static const double     MIN_DELTA_O;
    static const double     MAX_GAMMA_O;
    static const double     MIN_GAMMA_O;
+   static const double     MAX_DELTA_Y;
+   static const double     MIN_DELTA_Y;
+   static const double     MAX_GAMMA_Y;
+   static const double     MIN_GAMMA_Y;
+   static const double     MAX_ALPHA;
+   static const double     MIN_ALPHA;  
    static const double     MAX_NU;
    static const double     MAX_OMEGA;
    static const double     MAX_ETA;
-   static const double     LIMITE_VUE;
    static const int        LIFE;
    static const int        CLONE_RATE;
 
 private :
-   static int              next;
-   int                     identite;
+   static long int              next;
+   long int                     identite;
  
 public :                                      
    DBestiole();                               

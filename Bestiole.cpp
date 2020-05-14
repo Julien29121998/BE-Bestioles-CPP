@@ -40,7 +40,7 @@ Bestiole::~Bestiole()
 
    delete[] couleur;
 
-   cout << "dest Bestiole" << endl;
+   cout << "dest Bestiole : ";
 
 }
 
@@ -60,7 +60,7 @@ void Bestiole::bouge( int xLim, int yLim, double coef )
 
    double         nx, ny;
    double         dx = cos( orientation )*vitesse;
-   double         dy = -sin( orientation )*vitesse;
+   double         dy = sin( orientation )*vitesse;
    int            cx, cy;
 
 
@@ -103,10 +103,10 @@ void Bestiole::draw( UImg & support )
 {
 
    double         xt = x + cos( orientation )*AFF_SIZE/2.1;
-   double         yt = y - sin( orientation )*AFF_SIZE/2.1;
+   double         yt = y + sin( orientation )*AFF_SIZE/2.1;
 
 
-   support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
+   support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., orientation/M_PI*180., couleur );
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
    T* kindawhite = new T[ 3 ];
    kindawhite[0]=241;
@@ -142,13 +142,15 @@ DBestiole* Bestiole::randomCloning() const{
 bool Bestiole::vieillir(){
    age++;
    if(age>=esperance){
-      delete coucheExterne;
       return true;
    }
    return false;
 }
 DBestiole* Bestiole::copy(){
-   return new Bestiole(this->x,this->y,this->vitesse,this->orientation,this->couleur);
+   return new Bestiole(this->x,this->y,
+   this->vitesse*(0.92+0.16*(rand()/RAND_MAX)),
+   this->orientation*(0.92+0.16*(rand()/RAND_MAX)),
+   this->couleur);
 }
 void Bestiole::setExterne(DBestiole* p){
    coucheExterne= p;

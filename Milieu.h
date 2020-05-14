@@ -9,6 +9,7 @@
 #include "Nageoire.h"
 #include "Carapace.h"
 #include "Oreilles.h"
+#include "Yeux.h"
 
 #include <iostream>
 #include <vector>
@@ -29,12 +30,18 @@ typedef struct OreParams{
    double delta;
    double gamma;
 } Orp_t;
+typedef struct YeuxParams{
+   double delta;
+   double gamma;
+   double alpha;
+} Yeuxp_t;
 
 typedef struct BestiolesParams{
    Camop_t* camo;  
    Nagp_t* nag; 
    Carapp_t* cara;
    Orp_t* orei;
+   Yeuxp_t* yeux;
 } Bparams_t;
 
 class Milieu : public UImg

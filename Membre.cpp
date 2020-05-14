@@ -6,11 +6,11 @@
 
 Membre::Membre(DBestiole* dbestiole){
     mybestiole=dbestiole;
-    cout<<"const membre"<<endl;
+    cout<<"const membre : ";
 }     
 Membre::~Membre(){
     delete mybestiole;
-    cout<<"dest membre"<<endl;
+    cout<<"dest membre : ";
 }                              
 void Membre::action( Milieu & monMilieu){
     mybestiole->action(monMilieu);

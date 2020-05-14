@@ -10,7 +10,7 @@ Nageoire::Nageoire(DBestiole* dbestiole,double nu):Membre(dbestiole),nu(((nu>MAX
 }     
 Nageoire::~Nageoire()
 {
-   cout<<"dest Nageoire"<<endl;
+   cout<<"dest Nageoire et ";
 
 }                              
 void Nageoire::draw( UImg & support )
@@ -22,11 +22,11 @@ void Nageoire::draw( UImg & support )
    grey[1]=92+38*(1-nu/MAX_NU);
    grey[2]=92+38*(1-nu/MAX_NU);
    double xq = coords.x - cos( coords.ori)*AFF_SIZE/1.1;
-   double yq = coords.y + sin( coords.ori)*AFF_SIZE/1.1;
-   double xm = xq - cos( coords.ori)*AFF_SIZE/2.1;
-   double ym = yq + sin( coords.ori)*AFF_SIZE/2.1;
-   double xd = sin(coords.ori)*AFF_SIZE/3.4;
-   double yd = cos(coords.ori)*AFF_SIZE/3.4;
+   double yq = coords.y - sin( coords.ori)*AFF_SIZE/1.1;
+   double xm = xq - cos( coords.ori)*AFF_SIZE/1.8;
+   double ym = yq - sin( coords.ori)*AFF_SIZE/1.8;
+   double xd = -sin(coords.ori)*AFF_SIZE/3.1;
+   double yd = cos(coords.ori)*AFF_SIZE/3.1;
    support.draw_triangle(xq,yq,xm+xd,ym+yd,xm-xd,ym-yd,grey);
 
 }

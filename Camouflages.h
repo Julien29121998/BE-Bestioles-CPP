@@ -12,7 +12,7 @@ using namespace std;
 class Camouflages: public Membre
 {
 private:
-   int phi;
+   double phi;
 public :                                        
    Camouflages(DBestiole* dbestiole,double phi);     
    virtual ~Camouflages();                              
