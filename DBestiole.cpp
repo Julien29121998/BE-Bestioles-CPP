@@ -25,6 +25,10 @@ const double       DBestiole::GENERATION_RATE = 3.28;
 const int          DBestiole::LIFE = 400;
 long int           DBestiole::next = 0;
 
+BParams::~BParams(){}
+void BParams::PushWith(string key, Param_Dict& pd){
+    pd.emplace(make_pair(key,this));
+}
 
 DBestiole::DBestiole()
 {

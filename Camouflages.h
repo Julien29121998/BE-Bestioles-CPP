@@ -9,6 +9,12 @@ class Milieu;
 
 using namespace std;
 
+struct CamoParams:BParams
+{
+   double phi;
+   virtual void Add(Param_Dict& pd) override;
+};
+
 class Camouflages: public Membre
 {
 private:

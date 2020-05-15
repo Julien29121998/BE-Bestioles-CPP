@@ -4,6 +4,11 @@
 #include <cmath>
 #include "Milieu.h"
 
+void YeuxParams::Add(Param_Dict& pd)
+{
+    PushWith(string("Yeux"),pd);
+}
+
 Yeux::Yeux(DBestiole* dbestiole,double deltay, double gammay,double alpha):
 Capteur(dbestiole,
 ((deltay>MAX_DELTA_Y)?MAX_DELTA_Y:((deltay<MIN_DELTA_Y)?MIN_DELTA_Y:deltay)),

@@ -1,27 +1,6 @@
 #include "Factory.h"
 #define cond (it!=endit)
 
-BParams::~BParams(){}
-void BParams::PushWith(string key, Param_Dict& pd){
-    pd.emplace(make_pair(key,this));
-    cout<<pd.size()<<endl;
-}
-void CamoParams::Add(Param_Dict& pd){
-    PushWith(string("Camouflages"),pd);
-}
-void NageoParams::Add(Param_Dict& pd){
-    PushWith(string("Nageoire"),pd);
-}
-void CaraParams::Add(Param_Dict& pd){
-    PushWith(string("Carapace"),pd);
-}
-void OreParams::Add(Param_Dict& pd){
-    PushWith(string("Oreilles"),pd);
-}
-void YeuxParams::Add(Param_Dict& pd){
-    PushWith(string("Yeux"),pd);
-}
-
 Factory::Factory(Param_Dict params,const double prop): proportion(prop){
     cout<<"const Factory"<<endl;
     this->setParams(params);
@@ -59,7 +38,6 @@ void Factory::fillWith(vector<DBestiole*>& toFill, int count, int width, int hei
       }
       it=myParams.find(string("Nageoire"));
       if(cond){
-          cout<<"vu !"<<endl;
          bo = new Nageoire(bo,dynamic_cast<NageoParams*>(it->second)->nu);
       }
       it=myParams.find(string("Carapace"));

@@ -9,6 +9,14 @@ class Milieu;
 
 using namespace std;
 
+struct YeuxParams:BParams
+{
+   double delta;
+   double gamma;
+   double alpha;
+   virtual void Add(Param_Dict& pd) override;
+};
+
 class Yeux: public Capteur
 {
 private :

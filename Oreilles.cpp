@@ -4,6 +4,11 @@
 #include <cmath>
 #include "Milieu.h"
 
+void OreParams::Add(Param_Dict& pd)
+{
+    PushWith(string("Oreilles"),pd);
+}
+
 Oreilles::Oreilles(DBestiole* dbestiole,double deltao, double gammao):
 Capteur(dbestiole,
 ((deltao>MAX_DELTA_O)?MAX_DELTA_O:((deltao<MIN_DELTA_O)?MIN_DELTA_O:deltao)),

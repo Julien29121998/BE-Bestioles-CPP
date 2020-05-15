@@ -5,14 +5,28 @@
 #include "UImg.h"
 
 #include <iostream>
-using namespace std;
+#include <map>
+
 class Milieu;
+struct BParams;
+
+using namespace std;
+using Param_Dict = std::map<std::string,BParams*>;
+
+
 typedef struct paire {
    int x;
    int y;
    double ori;
 
 } paire_t;
+
+struct BParams
+{
+virtual ~BParams();
+void PushWith(string key,Param_Dict& pd);
+virtual void Add(Param_Dict& pd)=0;
+};
 
 class DBestiole{
 friend class Milieu;

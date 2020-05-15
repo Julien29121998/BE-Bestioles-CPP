@@ -9,6 +9,13 @@ class Milieu;
 
 using namespace std;
 
+struct OreParams:BParams
+{
+   double delta;
+   double gamma;
+   virtual void Add(Param_Dict& pd) override;
+};
+
 class Oreilles: public Capteur
 {
 public :                                        

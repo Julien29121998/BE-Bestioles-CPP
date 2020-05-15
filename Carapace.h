@@ -9,6 +9,11 @@ class Milieu;
 
 using namespace std;
 
+struct CaraParams:BParams
+{
+   double omega;double eta;virtual void Add(Param_Dict& pd) override;
+};
+
 class Carapace: public Membre
 {
 private:

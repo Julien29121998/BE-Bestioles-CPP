@@ -4,6 +4,11 @@
 #include <cmath>
 #include "Milieu.h"
 
+void NageoParams::Add(Param_Dict& pd)
+{
+    PushWith(string("Nageoire"),pd);
+}
+
 Nageoire::Nageoire(DBestiole* dbestiole,double nu):Membre(dbestiole),nu(((nu>MAX_NU)?MAX_NU:((nu<1)?1:nu)))
 {
    cout<<"const Nageoire"<<endl;

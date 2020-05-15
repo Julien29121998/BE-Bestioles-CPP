@@ -9,6 +9,12 @@ class Milieu;
 
 using namespace std;
 
+struct NageoParams:BParams
+{
+   double nu;
+   virtual void Add(Param_Dict& pd) override;
+};
+
 class Nageoire: public Membre
 {
 private:

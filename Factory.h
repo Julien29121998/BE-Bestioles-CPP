@@ -14,21 +14,8 @@
 #include <map>
 
 class Milieu;
-struct BParams;
 
 using namespace std;
-using Param_Dict = std::map<std::string,BParams*>;
-
-struct BParams{
-virtual ~BParams();
-void PushWith(string key,Param_Dict& pd);
-virtual void Add(Param_Dict& pd)=0;
-};
-struct CamoParams:BParams{double phi;virtual void Add(Param_Dict& pd) override;};
-struct NageoParams:BParams{double nu;virtual void Add(Param_Dict& pd) override;};
-struct CaraParams:BParams{double omega;double eta;virtual void Add(Param_Dict& pd) override;};
-struct OreParams:BParams{double delta;double gamma;virtual void Add(Param_Dict& pd) override;};
-struct YeuxParams:BParams{double delta;double gamma;double alpha;virtual void Add(Param_Dict& pd) override;};
 
 class Factory final{
 private:

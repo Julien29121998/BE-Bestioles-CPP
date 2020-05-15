@@ -4,6 +4,11 @@
 #include <cmath>
 #include "Milieu.h"
 
+void CaraParams::Add(Param_Dict& pd)
+{
+    PushWith(string("Carapace"),pd);
+}
+
 Carapace::Carapace(DBestiole* dbestiole,double omega, double eta):Membre(dbestiole),
 omega(((omega>MAX_OMEGA)?MAX_OMEGA:((omega<1)?1:omega))),
 eta(((eta>MAX_ETA)?MAX_ETA:((eta<1)?1:eta)))
