@@ -3,7 +3,7 @@
 #include "Milieu.h"
 
 
-Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
+Aquarium::Aquarium( int pop,int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
 {
 
    int         screenWidth = 1280; //screen_width();
@@ -14,6 +14,7 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
    cout << "const Aquarium" << endl;
 
    flotte = new Milieu( width, height );
+   target_population = pop;
    assign( *flotte, "Simulation d'ecosysteme" );
 
    move( static_cast<int>((screenWidth-width)/2), static_cast<int>((screenHeight-height)/2) );
@@ -35,6 +36,8 @@ void Aquarium::run( void )
 {
 
    cout << "running Aquarium" << endl;
+
+   flotte->introduire(target_population);
 
    while ( ! is_closed() )
    {

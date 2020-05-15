@@ -1,7 +1,7 @@
 all: main author info
 
-main : main.cpp Aquarium.o DBestiole.o Bestiole.o Milieu.o Membre.o Camouflages.o Nageoire.o Carapace.o Capteur.o Oreilles.o Yeux.o
-	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o DBestiole.o Bestiole.o Membre.o Camouflages.o Nageoire.o Carapace.o Milieu.o Capteur.o Oreilles.o Yeux.o -I . -lX11 -lpthread
+main : main.cpp Aquarium.o DBestiole.o Bestiole.o Milieu.o Membre.o Camouflages.o Nageoire.o Carapace.o Capteur.o Oreilles.o Yeux.o Factory.o
+	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o DBestiole.o Bestiole.o Membre.o Camouflages.o Nageoire.o Carapace.o Milieu.o Capteur.o Oreilles.o Yeux.o Factory.o -I . -lX11 -lpthread
 
 Aquarium.o : Aquarium.h Aquarium.cpp
 	g++ -Wall -std=c++11  -c Aquarium.cpp -I .
@@ -35,6 +35,9 @@ Oreilles.o : Oreilles.h Oreilles.cpp
 
 Yeux.o : Yeux.h Yeux.cpp
 	g++ -Wall -std=c++11 -c Yeux.cpp -I .
+
+Factory.o : Factory.h Factory.cpp
+	g++ -Wall -std=c++11 -c Factory.cpp -I .
 
 author:
 	echo "\nAUTHORS: GROUPE 4 (Rouge) - Projet  * Mehdi Hajjam - Wadia Ferjani - Anass Benfathallah - Julien Bénard"

@@ -1,4 +1,5 @@
 #include "Milieu.h"
+#include "Factory.h"
 
 #include <cstdlib>
 #include <ctime>
@@ -96,27 +97,8 @@ void Milieu::kill(int id){
       }
    }
 }
-
-void Milieu::Introduire(int combien, BestiolesParams params){
-   for(int i=0; i<combien;i++){
-      DBestiole* bo = new Bestiole();
-      DBestiole* lowest_layer = bo;
-      if(params.camo!=NULL){
-         bo = new Camouflages(bo,params.camo->phi);
-      }
-      if(params.nag!=NULL){
-         bo = new Nageoire(bo,params.nag->nu);
-      }
-      if(params.cara!=NULL){
-         bo = new Carapace(bo,params.cara->omega,params.cara->eta);
-      }
-      if(params.orei!=NULL){
-         bo = new Oreilles(bo,params.orei->delta,params.orei->gamma);
-      }
-      if(params.yeux!=NULL){
-         bo = new Yeux(bo,params.yeux->delta,params.yeux->gamma,params.yeux->alpha);
-      }
-      lowest_layer->setExterne(bo);
-      this->addMember(bo);
+void Milieu::introduire(int combien){
+   for(auto it=listeFactories.begin();it!=listeFactories.end();++it){
+      it->fillWith(listeBestioles,static_cast<int>(it->proportion*combien),width,height);
    }
 }

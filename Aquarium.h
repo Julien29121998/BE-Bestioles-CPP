@@ -17,12 +17,12 @@ class Aquarium : public CImgDisplay
 
 private :
    Milieu       * flotte;
-
+   int            target_population;
    int            delay;
    bool           paused;
 
 public :
-   Aquarium( int width, int height, int _delay );
+   Aquarium( int pop,int width, int height, int _delay );
    ~Aquarium( void );
 
    Milieu & getMilieu( void ) { return *flotte; }
