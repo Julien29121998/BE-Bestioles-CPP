@@ -25,7 +25,6 @@ void YeuxParams::Add(Param_Dict& pd){
 Factory::Factory(Param_Dict params,const double prop): proportion(prop){
     cout<<"const Factory"<<endl;
     this->setParams(params);
-    cout<<myParams.size()<<endl;
 }
 void Factory::setParams(Param_Dict params){
     myParams=Param_Dict(params.begin(),params.end());
@@ -48,7 +47,6 @@ Factory::~Factory(){
 
 }
 void Factory::fillWith(vector<DBestiole*>& toFill, int count, int width, int height)const{
-    cout<<myParams.size()<<endl;
     for(int i=0; i<count;i++){
       DBestiole* bo = new Bestiole();
       DBestiole* lowest_layer = bo;

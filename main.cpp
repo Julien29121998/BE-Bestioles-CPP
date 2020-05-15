@@ -23,7 +23,7 @@ int main()
    OreParams opm;
    YeuxParams ypm;
    Param_Dict     params;
-   Aquarium       ecosysteme( 28, 800, 600, 30 );
+   Aquarium       ecosysteme( 60, 800, 600, 30 );
 
    params.erase(params.begin(),params.end());
    kpm.eta = 2.;
@@ -31,7 +31,6 @@ int main()
    cpm.phi=0.8;
    kpm.Add(params);
    cpm.Add(params);
-   cout<<params.size()<<endl;
    Factory fact = Factory(params,0.25);
    ecosysteme.getMilieu().listeFactories.push_back(fact);
 
@@ -43,7 +42,6 @@ int main()
    opm.Add(params);
    npm.Add(params);
    cpm.Add(params);
-   cout<<params.size()<<endl;
    fact = Factory(params,0.25);
    ecosysteme.getMilieu().listeFactories.push_back(fact);
 
@@ -52,7 +50,6 @@ int main()
    ypm.gamma=0.4;
    ypm.alpha=0.78;
    ypm.Add(params);
-   cout<<params.size()<<endl;
    fact = Factory(params,0.25);
    ecosysteme.getMilieu().listeFactories.push_back(fact);
 
@@ -64,7 +61,6 @@ int main()
    opm.gamma=0.88;
    ypm.Add(params);
    opm.Add(params);
-   cout<<params.size()<<endl;
    fact = Factory(params,0.25);
    ecosysteme.getMilieu().listeFactories.push_back(fact);
 

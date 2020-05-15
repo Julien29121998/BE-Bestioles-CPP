@@ -8,12 +8,12 @@
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 
 
-Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
+Milieu::Milieu( int _width, int _height, int target_population ) : UImg( _width, _height, 1, 3 ),
                                             width(_width), height(_height)
 {
 
    cout << "const Milieu" << endl;
-
+   this->target_pop=target_population;
    std::srand( time(NULL) );
 
 }
@@ -34,7 +34,7 @@ Milieu::~Milieu()
 
 void Milieu::step()
 {
-   int pos;
+   int pos, diff;
    std::vector<int> toDelete;
    std::vector<DBestiole*> toAdd;
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
@@ -65,6 +65,14 @@ void Milieu::step()
    }
    toDelete.erase(toDelete.begin(),toDelete.end());
    listeBestioles.erase(beginit,listeBestioles.end());
+   diff =target_pop-toAdd.size();
+   if(diff>0){
+      for(auto it=listeFactories.begin();it!=listeFactories.end();++it){
+         double r =(static_cast<double>(std::rand()) / (RAND_MAX));
+         double taux = (it->proportion)*diff*r*DBestiole::GENERATION_RATE;
+         it->fillWith(toAdd,static_cast<int>(taux),width,height);
+      }
+   }
    for ( std::vector<DBestiole*>::iterator a_it = toAdd.begin() ; a_it != toAdd.end() ; ++a_it )
    {
       listeBestioles.push_back(*a_it);
@@ -97,8 +105,8 @@ void Milieu::kill(int id){
       }
    }
 }
-void Milieu::introduire(int combien){
+void Milieu::introduire(){
    for(auto it=listeFactories.begin();it!=listeFactories.end();++it){
-      it->fillWith(listeBestioles,static_cast<int>(it->proportion*combien),width,height);
+      it->fillWith(listeBestioles,static_cast<int>(it->proportion*target_pop),width,height);
    }
 }

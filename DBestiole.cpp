@@ -20,8 +20,9 @@ const double       DBestiole::MIN_ALPHA=0.31;
 const double       DBestiole::MAX_OMEGA =3.0;
 const double       DBestiole::MAX_ETA =2.8;
 const double       DBestiole::MAX_NU =6.5;
+const double       DBestiole::CLONE_RATE = 0.0016;
+const double       DBestiole::GENERATION_RATE = 3.28;
 const int          DBestiole::LIFE = 400;
-const int          DBestiole::CLONE_RATE = 450;
 long int           DBestiole::next = 0;
 
 

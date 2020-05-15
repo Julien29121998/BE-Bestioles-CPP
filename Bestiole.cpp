@@ -130,7 +130,8 @@ double Bestiole::getResist() const
    return 0;
 }
 DBestiole* Bestiole::randomCloning() const{
-   if(rand()%CLONE_RATE==1){
+   int invClone = static_cast<int>(1/CLONE_RATE);
+   if(rand()%invClone==1){
    DBestiole* b = coucheExterne->copy();
    b->setExterne(b);
       return b;
@@ -148,8 +149,8 @@ bool Bestiole::vieillir(){
 }
 DBestiole* Bestiole::copy(){
    return new Bestiole(this->x,this->y,
-   this->vitesse*(0.92+0.16*(rand()/RAND_MAX)),
-   this->orientation*(0.92+0.16*(rand()/RAND_MAX)),
+   this->vitesse*(0.92+0.16*(static_cast<double>(rand())/RAND_MAX)),
+   this->orientation*(0.92+0.16*(static_cast<double>(rand())/RAND_MAX)),
    this->couleur);
 }
 void Bestiole::setExterne(DBestiole* p){

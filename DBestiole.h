@@ -34,8 +34,9 @@ protected :
    static const double     MAX_NU;
    static const double     MAX_OMEGA;
    static const double     MAX_ETA;
+   static const double     GENERATION_RATE;
+   static const double     CLONE_RATE;
    static const int        LIFE;
-   static const int        CLONE_RATE;
 
 private :
    static long int              next;

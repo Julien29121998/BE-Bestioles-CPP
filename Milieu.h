@@ -18,12 +18,13 @@ private :
    static const T            white[];
 
    int                       width, height;
+   int                       target_pop;
 
    std::vector<DBestiole*>   listeBestioles;
 
 public :
    std::vector<Factory>      listeFactories;
-   Milieu( int _width, int _height );
+   Milieu( int _width, int _height, int target_population );
    ~Milieu();
 
    int getWidth() const { return width; };
@@ -33,7 +34,7 @@ public :
 
    int nbVoisins( const DBestiole* b );
    void kill(int id);
-   void introduire(int combien);
+   void introduire();
 
 };
 
