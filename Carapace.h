@@ -24,7 +24,7 @@ public :
    virtual ~Carapace();                              
    virtual void draw( UImg & support ) override;
    virtual double getResist()const override;
-   virtual void bouge(int xLim,int yLim,double coef) override;
+   virtual void bouge(Milieu& monMilieu,double coef) override;
    virtual DBestiole* copy() override;
 };
 

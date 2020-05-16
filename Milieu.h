@@ -35,7 +35,7 @@ public :
    int nbVoisins( const DBestiole* b );
    void kill(int id);
    void introduire();
-
+   void handleCollisions(DBestiole* b);
 };
 
 

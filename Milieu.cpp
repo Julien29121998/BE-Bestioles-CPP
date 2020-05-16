@@ -110,3 +110,14 @@ void Milieu::introduire(){
       it->fillWith(listeBestioles,static_cast<int>(it->proportion*target_pop),width,height);
    }
 }
+void Milieu::handleCollisions(DBestiole* b){
+   paire_t myCoords = b->getCoords();
+   for(std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it){
+      paire_t theirCoords = (*it)->getCoords();
+      int deltx=(theirCoords.x-myCoords.x);
+      int delty=(theirCoords.y-myCoords.y);
+      if((std::sqrt(deltx*deltx+delty*delty)<DBestiole::AFF_SIZE)&&(b->identite!=(*it)->identite)){
+         cout<<"collision "<<b->showID()<<" et "<<(*it)->showID()<<endl;
+      }
+   }
+}

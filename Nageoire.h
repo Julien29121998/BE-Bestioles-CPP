@@ -23,7 +23,7 @@ public :
    Nageoire(DBestiole* dbestiole,double nu);     
    virtual ~Nageoire();                              
    virtual void draw( UImg & support ) override;
-   virtual void bouge(int xLim,int yLim,double coef) override;
+   virtual void bouge(Milieu& monMilieu,double coef) override;
    virtual DBestiole* copy() override;
 };
 

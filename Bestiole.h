@@ -28,7 +28,7 @@ public :
    virtual ~Bestiole();                              
    virtual void action( Milieu & monMilieu) override;
    virtual void draw( UImg & support ) override;
-   virtual void bouge( int xLim, int yLim, double coef ) override;
+   virtual void bouge(Milieu& monMilieu, double coef ) override;
    virtual bool jeTeVois( const DBestiole* b ) const override;
    virtual void initCoords( int xLim, int yLim ) override;
    virtual double getVisibilite() const override;
@@ -39,6 +39,7 @@ public :
    virtual void setExterne(DBestiole* p) override;
    virtual paire_t getCoords() const override;
    virtual void killMe() override;
+   virtual void setCoords(paire_t coords) override;
 
 };
 

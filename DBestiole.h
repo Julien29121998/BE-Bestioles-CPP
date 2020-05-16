@@ -18,6 +18,7 @@ typedef struct paire {
    int x;
    int y;
    double ori;
+   double vite;
 
 } paire_t;
 
@@ -62,7 +63,7 @@ public :
    char* showID() const;
    virtual void action( Milieu & monMilieu)=0;
    virtual void draw( UImg & support )=0;
-   virtual void bouge( int xLim, int yLim, double coef )=0;
+   virtual void bouge(Milieu& monMilieu, double coef )=0;
    virtual bool jeTeVois( const DBestiole* b ) const=0;
    virtual void initCoords( int xLim, int yLim )=0;
    virtual double getVisibilite() const=0;
@@ -73,6 +74,8 @@ public :
    virtual DBestiole* copy()=0;
    virtual paire_t getCoords() const=0;
    virtual void killMe()=0;
+   virtual void setCoords(paire_t coords)=0;
+
 };
 
 

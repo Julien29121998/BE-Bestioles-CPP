@@ -18,8 +18,8 @@ void Membre::action( Milieu & monMilieu){
 void Membre::draw( UImg & support ){
     mybestiole->draw(support);
 }
-void Membre::bouge( int xLim, int yLim, double coef ){
-    mybestiole->bouge(xLim,yLim,coef);
+void Membre::bouge(Milieu& monMilieu, double coef ){
+    mybestiole->bouge(monMilieu,coef);
 }
 bool Membre::jeTeVois( const DBestiole* b ) const{
     return(mybestiole->jeTeVois(b));
@@ -51,4 +51,7 @@ DBestiole* Membre::copy()
 }
 void Membre::killMe(){
     mybestiole->killMe();
+}
+void Membre::setCoords(paire_t coords){
+    return mybestiole->setCoords(coords);
 }

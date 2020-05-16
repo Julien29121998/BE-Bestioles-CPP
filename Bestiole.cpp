@@ -54,8 +54,10 @@ void Bestiole::initCoords( int xLim, int yLim )
 }
 
 
-void Bestiole::bouge( int xLim, int yLim, double coef )
+void Bestiole::bouge(Milieu& monMilieu, double coef )
 {
+   int xLim=monMilieu.getWidth();
+   int yLim=monMilieu.getHeight();
    vitesse=coef*((vitesse>=MAX_VITESSE)?MAX_VITESSE:vitesse);
 
    double         nx, ny;
@@ -70,6 +72,7 @@ void Bestiole::bouge( int xLim, int yLim, double coef )
    nx = x + dx + cx;
    ny = y + dy + cy;
 
+   monMilieu.handleCollisions(this->coucheExterne);
    if ( (nx < 0) || (nx > xLim - 1) ) {
       orientation = M_PI - orientation;
       cumulX = 0.;
@@ -94,7 +97,7 @@ void Bestiole::bouge( int xLim, int yLim, double coef )
 void Bestiole::action( Milieu & monMilieu)
 {
 
-   bouge( monMilieu.getWidth(), monMilieu.getHeight(),1 );
+   bouge( monMilieu,1 );
 
 }
 
@@ -165,4 +168,11 @@ paire_t Bestiole::getCoords() const{
 }
 void Bestiole::killMe(){
    this->age+=this->esperance;
+}
+
+void Bestiole::setCoords(paire_t coords){
+   x=coords.x;
+   y=coords.y;
+   orientation=coords.ori;
+   vitesse=coords.vite;
 }

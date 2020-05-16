@@ -35,8 +35,8 @@ void Nageoire::draw( UImg & support )
    support.draw_triangle(xq,yq,xm+xd,ym+yd,xm-xd,ym-yd,grey);
 
 }
-void Nageoire::bouge(int xLim,int yLim,double coef){
-   Membre::bouge(xLim,yLim, nu * coef);
+void Nageoire::bouge(Milieu& monMilieu,double coef){
+   Membre::bouge(monMilieu, nu * coef);
 }
 
 DBestiole* Nageoire::copy()
