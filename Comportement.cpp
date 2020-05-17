@@ -37,9 +37,7 @@ void Multiple::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     if(ComportementDuMultiple==nullptr||rand()%300==1){
         ComportementDuMultiple=monMilieu.Comportements_Disponibles.at(rand()%monMilieu.Comportements_Disponibles.size());
     }
-    if(rand()%18==1){
-        (*ComportementDuMultiple)(monMilieu,coucheExterne);
-    }
+    (*ComportementDuMultiple)(monMilieu,coucheExterne);
 }
 
 bool Multiple::isMultiple() const{
