@@ -112,19 +112,14 @@ void Milieu::introduire(){
    }
 }
 void Milieu::handleCollisions(DBestiole* b){
-   auto norm=[](double a, double b){return std::sqrt(a*a+b*b);};
-
    paire_t myCoords = b->getCoords();
 
    for(std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it){
       
       paire_t theirCoords = (*it)->getCoords();
-      
-      double deltx=(theirCoords.x-myCoords.x);
-      double delty=(theirCoords.y-myCoords.y);
 
-      double norm_delt=norm(deltx,delty);
-      if((norm_delt<DBestiole::AFF_SIZE)&&(b->identite!=(*it)->identite)){  
+      if((std::sqrt((theirCoords.x-myCoords.x)*(theirCoords.x-myCoords.x)+(theirCoords.y-myCoords.y)*(theirCoords.y-myCoords.y))<DBestiole::AFF_SIZE)
+      &&(b->identite!=(*it)->identite)){  
          myCoords.ori=-myCoords.ori;
          theirCoords.ori=-theirCoords.ori;
          b->setCoords(myCoords);
