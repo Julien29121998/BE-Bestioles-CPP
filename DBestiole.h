@@ -56,6 +56,7 @@ protected :
    static const double     GENERATION_RATE;
    static const double     CLONE_RATE;
    static const double     SURVIVE_COLLISION;
+   static const double     PROPORTION_CHANGE;
    static const int        LIFE;
 
 private :

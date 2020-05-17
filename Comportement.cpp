@@ -6,6 +6,8 @@ void ComportParams::Add(Param_Dict& pd)
     PushWith(string("Comportement"),pd);
 }
 
+const int   IComportement::MULTIPLE_CHANGE_RATE=300;
+
 IComportement::IComportement(){
     cout<<"const IC"<<endl;
 }
@@ -34,7 +36,7 @@ Multiple::~Multiple(){
     cout<<"dest Multiple"<<endl;
 }
 void Multiple::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
-    if(ComportementDuMultiple==nullptr||rand()%300==1){
+    if(ComportementDuMultiple==nullptr||rand()%IComportement::MULTIPLE_CHANGE_RATE==1){
         ComportementDuMultiple=monMilieu.Comportements_Disponibles.at(rand()%monMilieu.Comportements_Disponibles.size());
     }
     (*ComportementDuMultiple)(monMilieu,coucheExterne);

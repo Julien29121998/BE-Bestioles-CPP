@@ -66,8 +66,19 @@ void Bestiole::bouge(Milieu& monMilieu, double coef, paire_t objectif)
 {
    int xLim=monMilieu.getWidth();
    int yLim=monMilieu.getHeight();
-   vitesse=((vitesse>=sqrt(coef)*MAX_VITESSE)?sqrt(coef)*MAX_VITESSE:vitesse);
-
+   double new_v=(objectif.vite-vitesse)*(PROPORTION_CHANGE)+vitesse;
+   double new_or=objectif.ori-orientation;
+   if(new_or>M_PI){
+      new_or=fmod((new_or-2*M_PI)*(PROPORTION_CHANGE),M_PI*2)+orientation;
+   }
+   else if(new_or<-M_PI){
+      new_or=fmod((new_or+2*M_PI)*(PROPORTION_CHANGE),M_PI*2)+orientation;
+   }
+   else{
+      new_or=new_or*(PROPORTION_CHANGE)+orientation;
+   }
+   vitesse=((new_v>=sqrt(coef)*MAX_VITESSE)?sqrt(coef)*MAX_VITESSE:new_v);
+   orientation=new_or;
    double         nx, ny;
    double         dx = cos( orientation )*vitesse;
    double         dy = sin( orientation )*vitesse;

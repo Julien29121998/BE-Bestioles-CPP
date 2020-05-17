@@ -19,6 +19,8 @@ struct ComportParams:BParams
 };
 
 class IComportement{
+protected:
+    static const int MULTIPLE_CHANGE_RATE;
 public:
     IComportement();
     virtual ~IComportement();
