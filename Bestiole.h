@@ -4,6 +4,7 @@
 
 #include "UImg.h"
 #include "DBestiole.h"
+#include "Comportement.h"
 #include <iostream>
 class Milieu;
 
@@ -19,12 +20,13 @@ private :
    double            orientation;
    double            vitesse;
    DBestiole*        coucheExterne;
+   IComportement*    comportement;
 
    T               * couleur;
 
 public :                                        
-   Bestiole();     
-   Bestiole(int _x, int _y,double _v, double _o, T* _couleur);                        
+   Bestiole(IComportement* comp);     
+   Bestiole(int _x, int _y,double _v, double _o, T* _couleur, IComportement* comp);                        
    virtual ~Bestiole();                              
    virtual void action( Milieu & monMilieu) override;
    virtual void draw( UImg & support ) override;

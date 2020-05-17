@@ -1,7 +1,9 @@
 #include "Milieu.h"
 #include "Factory.h"
+#include "Comportement.h"
 
 #include <cstdlib>
+#include <vector>
 #include <cmath>
 #include <ctime>
 
@@ -12,7 +14,16 @@ const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 Milieu::Milieu( int _width, int _height, int target_population ) : UImg( _width, _height, 1, 3 ),
                                             width(_width), height(_height)
 {
-
+   IComportement* dumb = new Dumb();
+   IComportement* peureuse = new Peureuse();
+   IComportement* kamikaze = new Kamikaze();
+   IComportement* prevoyante = new Prevoyante();
+   IComportement* gregaire= new Gregaire();
+   Comportements_Disponibles.push_back(peureuse);
+   Comportements_Disponibles.push_back(kamikaze);
+   Comportements_Disponibles.push_back(prevoyante);
+   Comportements_Disponibles.push_back(gregaire);
+   Comportement_par_defaut = dumb;
    cout << "const Milieu" << endl;
    this->target_pop=target_population;
    std::srand( time(NULL) );
@@ -28,6 +39,10 @@ Milieu::~Milieu()
       delete (*it);
 
    }
+   for(std::vector<IComportement*>::iterator cit=Comportements_Disponibles.begin();cit!=Comportements_Disponibles.end();++cit){
+      delete(*cit);
+   }
+   delete(Comportement_par_defaut);
    cout << "dest Milieu" << endl;
 
 }
@@ -71,7 +86,7 @@ void Milieu::step()
       for(auto it=listeFactories.begin();it!=listeFactories.end();++it){
          double r =(static_cast<double>(std::rand()) / (RAND_MAX));
          double taux = (it->proportion)*diff*r*DBestiole::GENERATION_RATE;
-         it->fillWith(toAdd,static_cast<int>(taux),width,height);
+         it->fillWith(toAdd,static_cast<int>(taux),*this);
       }
    }
    for ( std::vector<DBestiole*>::iterator a_it = toAdd.begin() ; a_it != toAdd.end() ; ++a_it )
@@ -108,7 +123,7 @@ void Milieu::kill(int id){
 }
 void Milieu::introduire(){
    for(auto it=listeFactories.begin();it!=listeFactories.end();++it){
-      it->fillWith(listeBestioles,static_cast<int>(it->proportion*target_pop),width,height);
+      it->fillWith(listeBestioles,static_cast<int>(it->proportion*target_pop),*this);
    }
 }
 void Milieu::handleCollisions(DBestiole* b){

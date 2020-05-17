@@ -28,6 +28,6 @@ public:
     void setParams(Param_Dict params);
     Param_Dict* getParams();
     ~Factory();
-    void fillWith(vector<DBestiole*>& toFill, int count, int width, int height)const;
+    void fillWith(vector<DBestiole*>& toFill, int count,Milieu& monMilieu)const;
 };
 #endif

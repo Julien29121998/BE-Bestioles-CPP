@@ -25,9 +25,9 @@ Factory::~Factory(){
     cout<<"dest Factory"<<endl;
 
 }
-void Factory::fillWith(vector<DBestiole*>& toFill, int count, int width, int height)const{
+void Factory::fillWith(vector<DBestiole*>& toFill, int count, Milieu& monMilieu)const{
     for(int i=0; i<count;i++){
-      DBestiole* bo = new Bestiole();
+      DBestiole* bo = new Bestiole(monMilieu.Comportement_par_defaut);
       DBestiole* lowest_layer = bo;
       auto 
       endit=myParams.end();
@@ -57,7 +57,7 @@ void Factory::fillWith(vector<DBestiole*>& toFill, int count, int width, int hei
          dynamic_cast<YeuxParams*>(it->second)->alpha);
       }
       lowest_layer->setExterne(bo);
-      bo->initCoords(width,height);
+      bo->initCoords(monMilieu.getWidth(),monMilieu.getHeight());
       toFill.push_back(bo);
     }
 

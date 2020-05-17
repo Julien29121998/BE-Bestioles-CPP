@@ -10,6 +10,7 @@
 using namespace std;
 
 class Factory;
+class IComportement;
 
 class Milieu : public UImg
 {
@@ -23,7 +24,10 @@ private :
    std::vector<DBestiole*>   listeBestioles;
 
 public :
-   std::vector<Factory>      listeFactories;
+   std::vector<IComportement*> Comportements_Disponibles;
+   IComportement*              Comportement_par_defaut;
+   std::vector<Factory>        listeFactories;
+
    Milieu( int _width, int _height, int target_population );
    ~Milieu();
 

@@ -4,7 +4,7 @@
 #include <cmath>
 #include "Milieu.h"
 
-Bestiole::Bestiole(): DBestiole()
+Bestiole::Bestiole(IComportement* comp): DBestiole()
 {
    cout << "const Bestiole par defaut" << endl;
 
@@ -18,8 +18,13 @@ Bestiole::Bestiole(): DBestiole()
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   if(comp->isMultiple()){
+      comportement=new Multiple();
+   }else{
+      comportement=comp;
+   }
 }
-Bestiole::Bestiole(int _x, int _y,double _v, double _o, T* _couleur):DBestiole()
+Bestiole::Bestiole(int _x, int _y,double _v, double _o, T* _couleur,IComportement* comp):DBestiole()
 {
    cout << "const Bestiole spécifique" << endl;
    x = _x;
@@ -31,6 +36,11 @@ Bestiole::Bestiole(int _x, int _y,double _v, double _o, T* _couleur):DBestiole()
    age=0;
    couleur = new T[ 3 ];
    memcpy( couleur,_couleur, 3*sizeof(T) );
+   if(comp->isMultiple()){
+      comportement=new Multiple();
+   }else{
+      comportement=comp;
+   }
 
 }
 
@@ -39,7 +49,9 @@ Bestiole::~Bestiole()
 {
 
    delete[] couleur;
-
+   if(comportement->isMultiple()){
+      delete comportement;
+   }
    cout << "dest Bestiole : ";
 
 }
@@ -96,7 +108,7 @@ void Bestiole::bouge(Milieu& monMilieu, double coef )
 
 void Bestiole::action( Milieu & monMilieu)
 {
-
+   (*this->comportement)(monMilieu,coucheExterne);
    coucheExterne->bouge( monMilieu,1. );
 
 }
@@ -156,7 +168,7 @@ DBestiole* Bestiole::copy(){
    this->y+(rand()%3-1)*AFF_SIZE,
    this->vitesse*(0.92+0.16*(static_cast<double>(rand())/RAND_MAX)),
    this->orientation*(0.92+0.16*(static_cast<double>(rand())/RAND_MAX)),
-   this->couleur);
+   this->couleur,this->comportement);
 }
 void Bestiole::setExterne(DBestiole* p){
    coucheExterne= p;
