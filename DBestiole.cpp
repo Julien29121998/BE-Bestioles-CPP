@@ -4,7 +4,7 @@
 #include "Milieu.h"
 
 const double       DBestiole::AFF_SIZE = 8.;
-const double       DBestiole::MAX_VITESSE = 7.2;
+const double       DBestiole::MAX_VITESSE = 6.8;
 const double       DBestiole::MAX_PHI =1.;
 const double       DBestiole::MIN_PHI =0.;
 const double       DBestiole::MAX_DELTA_O = 39.6;
@@ -17,10 +17,10 @@ const double       DBestiole::MAX_GAMMA_Y=1.;
 const double       DBestiole::MIN_GAMMA_Y=0.;
 const double       DBestiole::MAX_ALPHA=4.59;
 const double       DBestiole::MIN_ALPHA=0.31;
-const double       DBestiole::MAX_OMEGA =5.3;
-const double       DBestiole::MAX_ETA =2.8;
-const double       DBestiole::MAX_NU =6.5;
-const double       DBestiole::CLONE_RATE = 0.001;
+const double       DBestiole::MAX_OMEGA =4.5;
+const double       DBestiole::MAX_ETA =2.9;
+const double       DBestiole::MAX_NU =2.7;
+const double       DBestiole::CLONE_RATE = 0.0008;
 const double       DBestiole::GENERATION_RATE = 3.26;
 const double       DBestiole::SURVIVE_COLLISION=0.88;
 const int          DBestiole::LIFE = 600;

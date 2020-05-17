@@ -112,51 +112,21 @@ void Milieu::introduire(){
    }
 }
 void Milieu::handleCollisions(DBestiole* b){
-
    auto norm=[](double a, double b){return std::sqrt(a*a+b*b);};
-   auto custom_atan= [](double x, double y)
-     {if(x!=0)return((x<0?M_PI:(y<0?2*M_PI:0))+((x*y)>0?1:-1)*std::atan(std::abs(y/x)));
-      else return((y>0?1:-1)*M_PI/2);};
 
    paire_t myCoords = b->getCoords();
-   xcoords_t myDCoords = b->getDoubleCoords();
 
    for(std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it){
       
       paire_t theirCoords = (*it)->getCoords();
-      xcoords_t theirDCoords =(*it)->getDoubleCoords();
-
-      double deltx=(theirDCoords.x-myDCoords.x);
-      double delty=(theirDCoords.y-myDCoords.y);
-
-      double xv=myCoords.vite*std::cos(myCoords.ori);
-      double yv=myCoords.vite*std::sin(myCoords.ori);
+      
+      double deltx=(theirCoords.x-myCoords.x);
+      double delty=(theirCoords.y-myCoords.y);
 
       double norm_delt=norm(deltx,delty);
       if((norm_delt<DBestiole::AFF_SIZE)&&(b->identite!=(*it)->identite)){  
-         if(norm_delt==0){norm_delt=0.01;}
-         
-         double xv2=theirCoords.vite*std::cos(myCoords.ori);
-         double yv2=theirCoords.vite*std::sin(myCoords.ori);
-
-         double v_b_vers_it=(xv*deltx+yv*delty)/norm_delt;
-         double v_it_vers_b=-(xv2*deltx+yv2*delty)/norm_delt;
-
-         double vxnormal_b = (delty/norm_delt)*v_it_vers_b;
-         double vynormal_b = -(deltx/norm_delt)*v_it_vers_b;
-         double vxnormal_it = (delty/norm_delt)*v_b_vers_it;
-         double vynormal_it = -(deltx/norm_delt)*v_b_vers_it;
-
-         double nouvelle_vitesse_x_b=xv-vxnormal_it+vxnormal_b;
-         double nouvelle_vitesse_y_b=yv-vynormal_it+vynormal_b;
-         double nouvelle_vitesse_x_it=xv2-vxnormal_b+vxnormal_it;
-         double nouvelle_vitesse_y_it=yv2-vynormal_b+vynormal_it;
-         
-         myCoords.ori=custom_atan(nouvelle_vitesse_x_b,nouvelle_vitesse_y_b);
-         myCoords.vite=norm(nouvelle_vitesse_x_b,nouvelle_vitesse_y_b);
-         theirCoords.ori=custom_atan(nouvelle_vitesse_x_it,nouvelle_vitesse_y_it);
-         theirCoords.vite=norm(nouvelle_vitesse_x_it,nouvelle_vitesse_y_it);
-
+         myCoords.ori=-myCoords.ori;
+         theirCoords.ori=-theirCoords.ori;
          b->setCoords(myCoords);
          (*it)->setCoords(theirCoords);
 

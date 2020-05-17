@@ -58,7 +58,7 @@ void Bestiole::bouge(Milieu& monMilieu, double coef )
 {
    int xLim=monMilieu.getWidth();
    int yLim=monMilieu.getHeight();
-   vitesse=coef*((vitesse>=MAX_VITESSE)?MAX_VITESSE:vitesse);
+   vitesse=((vitesse>=sqrt(coef)*MAX_VITESSE)?sqrt(coef)*MAX_VITESSE:vitesse);
 
    double         nx, ny;
    double         dx = cos( orientation )*vitesse;
@@ -97,7 +97,7 @@ void Bestiole::bouge(Milieu& monMilieu, double coef )
 void Bestiole::action( Milieu & monMilieu)
 {
 
-   bouge( monMilieu,1 );
+   coucheExterne->bouge( monMilieu,1. );
 
 }
 
@@ -178,10 +178,4 @@ void Bestiole::setCoords(paire_t coords){
    y=coords.y;
    orientation=coords.ori;
    vitesse=coords.vite;
-}
-xcoords_t Bestiole::getDoubleCoords()const{
-   xcoords_t xct;
-   xct.x=x+cumulX-static_cast<int>(cumulX);
-   xct.y=y+cumulY-static_cast<int>(cumulY);
-   return xct;
 }

@@ -78,7 +78,6 @@ public :
    virtual void setExterne(DBestiole* p)=0;
    virtual DBestiole* copy()=0;
    virtual paire_t getCoords() const=0;
-   virtual xcoords_t getDoubleCoords() const=0;
    virtual void killMe()=0;
    virtual void setCoords(paire_t coords)=0;
 

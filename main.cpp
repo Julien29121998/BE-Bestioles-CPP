@@ -26,7 +26,7 @@ int main()
    Aquarium       ecosysteme( 40, 800, 600, 30 );
 
    params.erase(params.begin(),params.end());
-   kpm.eta = 2.;
+   kpm.eta = 2.6;
    kpm.omega = 3.8;
    cpm.phi=0.8;
    kpm.Add(params);
@@ -37,7 +37,7 @@ int main()
    params.erase(params.begin(),params.end());
    opm.delta=18.5;
    opm.gamma=0.9;
-   npm.nu = 3.1;
+   npm.nu = 2.6;
    cpm.phi=0.2;
    opm.Add(params);
    npm.Add(params);

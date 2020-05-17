@@ -55,6 +55,3 @@ void Membre::killMe(){
 void Membre::setCoords(paire_t coords){
     return mybestiole->setCoords(coords);
 }
-xcoords_t Membre::getDoubleCoords() const{
-    return mybestiole->getDoubleCoords();
-}
