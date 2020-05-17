@@ -1,6 +1,11 @@
 #include "Comportement.h"
 using namespace std;
 
+void ComportParams::Add(Param_Dict& pd)
+{
+    PushWith(string("Comportement"),pd);
+}
+
 IComportement::IComportement(){
     cout<<"const IC"<<endl;
 }
@@ -32,10 +37,10 @@ Multiple::~Multiple(){
 void Multiple::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     if(ComportementDuMultiple==nullptr||rand()%300==1){
         ComportementDuMultiple=monMilieu.Comportements_Disponibles.at(rand()%monMilieu.Comportements_Disponibles.size());
-        cout<<"change multiple "<<typeid(ComportementDuMultiple).name()<<endl;
+        cout<<"change multiple "<<typeid(*ComportementDuMultiple).name()<<endl;
     }
     if(rand()%18==1){
-        cout<<(coucheExterne->showID())<<" is Multiple with : ";
+        cout<<(coucheExterne->showID())<<" is Multiple"<<endl;
         (*ComportementDuMultiple)(monMilieu,coucheExterne);
     }
 }

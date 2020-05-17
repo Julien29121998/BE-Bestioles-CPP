@@ -27,11 +27,25 @@ Factory::~Factory(){
 }
 void Factory::fillWith(vector<DBestiole*>& toFill, int count, Milieu& monMilieu)const{
     for(int i=0; i<count;i++){
-      DBestiole* bo = new Bestiole(monMilieu.Comportement_par_defaut);
-      DBestiole* lowest_layer = bo;
+      DBestiole* bo;
       auto 
       endit=myParams.end();
       auto 
+      it=myParams.find(string("Comportement"));
+      if(cond){
+          int comp=dynamic_cast<ComportParams*>(it->second)->Comportement;
+          if(comp<0){
+            bo = new Bestiole(new Multiple());
+          }
+          else{
+            bo = new Bestiole(monMilieu.Comportements_Disponibles[comp]);
+          }
+      }
+      else{
+          bo = new Bestiole(monMilieu.Comportement_par_defaut);
+      }
+      DBestiole* lowest_layer = bo;
+
       it=myParams.find(string("Camouflages"));
       if(cond){
          bo = new Camouflages(bo,dynamic_cast<CamoParams*>(it->second)->phi);

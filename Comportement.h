@@ -5,6 +5,19 @@
 #include <iostream>
 #include <vector>
 
+#define COMP_MULTIPLE -1
+#define COMP_PEUREUSE 0
+#define COMP_KAMIKAZE 1
+#define COMP_PREVOYANTE 2
+#define COMP_GREGAIRE 3
+
+
+struct ComportParams:BParams
+{
+   int Comportement;
+   virtual void Add(Param_Dict& pd) override;
+};
+
 class IComportement{
 public:
     IComportement();

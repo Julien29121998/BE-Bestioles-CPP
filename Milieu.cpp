@@ -19,10 +19,11 @@ Milieu::Milieu( int _width, int _height, int target_population ) : UImg( _width,
    IComportement* kamikaze = new Kamikaze();
    IComportement* prevoyante = new Prevoyante();
    IComportement* gregaire= new Gregaire();
-   Comportements_Disponibles.push_back(peureuse);
-   Comportements_Disponibles.push_back(kamikaze);
-   Comportements_Disponibles.push_back(prevoyante);
-   Comportements_Disponibles.push_back(gregaire);
+   Comportements_Disponibles=std::vector<IComportement*>(4,NULL);
+   Comportements_Disponibles[COMP_PEUREUSE]=(peureuse);
+   Comportements_Disponibles[COMP_KAMIKAZE]=(kamikaze);
+   Comportements_Disponibles[COMP_PREVOYANTE]=(prevoyante);
+   Comportements_Disponibles[COMP_GREGAIRE]=(gregaire);
    Comportement_par_defaut = dumb;
    cout << "const Milieu" << endl;
    this->target_pop=target_population;

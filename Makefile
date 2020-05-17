@@ -39,9 +39,9 @@ Yeux.o : Yeux.h Milieu.h DBestiole.h Membre.h Capteur.h Yeux.cpp
 Factory.o : Factory.h Milieu.h DBestiole.h Membre.h Bestiole.h Capteur.h Yeux.h Oreilles.h Nageoire.h Camouflages.h Carapace.h Comportement.h Factory.cpp
 	g++ -Wall -std=c++11 -c Factory.cpp -I .
 
-Comportement.o: Comportement.h Milieu.h DBestiole.h
+Comportement.o: Comportement.h Milieu.h DBestiole.h Comportement.cpp
 	g++ -Wall -std=c++11 -c Comportement.cpp -I .
-	
+
 author:
 	echo "\nAUTHORS: GROUPE 4 (Rouge) - Projet  * Mehdi Hajjam - Wadia Ferjani - Anass Benfathallah - Julien Bénard"
 

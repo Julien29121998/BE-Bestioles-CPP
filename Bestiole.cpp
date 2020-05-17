@@ -18,11 +18,7 @@ Bestiole::Bestiole(IComportement* comp): DBestiole()
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   if(comp->isMultiple()){
-      comportement=new Multiple();
-   }else{
-      comportement=comp;
-   }
+   comportement=comp;
 }
 Bestiole::Bestiole(int _x, int _y,double _v, double _o, T* _couleur,IComportement* comp):DBestiole()
 {
