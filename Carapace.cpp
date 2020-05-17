@@ -32,7 +32,7 @@ void Carapace::draw( UImg & support )
 
 }
 double Carapace::getResist()const{
-   return omega+Membre::getResist();
+   return omega*Membre::getResist();
 }
 void Carapace::bouge(Milieu& monMilieu,double coef){
    Membre::bouge(monMilieu, coef/eta);

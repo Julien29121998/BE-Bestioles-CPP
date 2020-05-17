@@ -21,6 +21,10 @@ typedef struct paire {
    double vite;
 
 } paire_t;
+typedef struct exact_coords {
+   double x;
+   double y;
+} xcoords_t;
 
 struct BParams
 {
@@ -51,6 +55,7 @@ protected :
    static const double     MAX_ETA;
    static const double     GENERATION_RATE;
    static const double     CLONE_RATE;
+   static const double     SURVIVE_COLLISION;
    static const int        LIFE;
 
 private :
@@ -73,6 +78,7 @@ public :
    virtual void setExterne(DBestiole* p)=0;
    virtual DBestiole* copy()=0;
    virtual paire_t getCoords() const=0;
+   virtual xcoords_t getDoubleCoords() const=0;
    virtual void killMe()=0;
    virtual void setCoords(paire_t coords)=0;
 

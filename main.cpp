@@ -23,11 +23,11 @@ int main()
    OreParams opm;
    YeuxParams ypm;
    Param_Dict     params;
-   Aquarium       ecosysteme( 60, 800, 600, 30 );
+   Aquarium       ecosysteme( 40, 800, 600, 30 );
 
    params.erase(params.begin(),params.end());
    kpm.eta = 2.;
-   kpm.omega = 2.8;
+   kpm.omega = 3.8;
    cpm.phi=0.8;
    kpm.Add(params);
    cpm.Add(params);

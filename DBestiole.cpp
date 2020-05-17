@@ -17,12 +17,13 @@ const double       DBestiole::MAX_GAMMA_Y=1.;
 const double       DBestiole::MIN_GAMMA_Y=0.;
 const double       DBestiole::MAX_ALPHA=4.59;
 const double       DBestiole::MIN_ALPHA=0.31;
-const double       DBestiole::MAX_OMEGA =3.0;
+const double       DBestiole::MAX_OMEGA =5.3;
 const double       DBestiole::MAX_ETA =2.8;
 const double       DBestiole::MAX_NU =6.5;
-const double       DBestiole::CLONE_RATE = 0.0016;
-const double       DBestiole::GENERATION_RATE = 3.28;
-const int          DBestiole::LIFE = 400;
+const double       DBestiole::CLONE_RATE = 0.001;
+const double       DBestiole::GENERATION_RATE = 3.26;
+const double       DBestiole::SURVIVE_COLLISION=0.88;
+const int          DBestiole::LIFE = 600;
 long int           DBestiole::next = 0;
 
 BParams::~BParams(){}

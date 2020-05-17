@@ -130,7 +130,7 @@ double Bestiole::getVisibilite() const
 }
 double Bestiole::getResist() const
 {
-   return 0;
+   return 1;
 }
 DBestiole* Bestiole::randomCloning() const{
    int invClone = static_cast<int>(1/CLONE_RATE);
@@ -151,7 +151,9 @@ bool Bestiole::vieillir(){
    return false;
 }
 DBestiole* Bestiole::copy(){
-   return new Bestiole(this->x,this->y,
+   return new Bestiole(
+   this->x+(rand()%3-1)*AFF_SIZE,
+   this->y+(rand()%3-1)*AFF_SIZE,
    this->vitesse*(0.92+0.16*(static_cast<double>(rand())/RAND_MAX)),
    this->orientation*(0.92+0.16*(static_cast<double>(rand())/RAND_MAX)),
    this->couleur);
@@ -164,6 +166,7 @@ paire_t Bestiole::getCoords() const{
    res.x=this->x;
    res.y=this->y;
    res.ori=this->orientation;
+   res.vite=this->vitesse;
    return res;
 }
 void Bestiole::killMe(){
@@ -175,4 +178,10 @@ void Bestiole::setCoords(paire_t coords){
    y=coords.y;
    orientation=coords.ori;
    vitesse=coords.vite;
+}
+xcoords_t Bestiole::getDoubleCoords()const{
+   xcoords_t xct;
+   xct.x=x+cumulX-static_cast<int>(cumulX);
+   xct.y=y+cumulY-static_cast<int>(cumulY);
+   return xct;
 }
