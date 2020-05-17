@@ -23,7 +23,7 @@ int main()
    OreParams opm;
    YeuxParams ypm;
    Param_Dict     params;
-   Aquarium       ecosysteme( 40, 800, 600, 30 );
+   Aquarium       ecosysteme( 60, 800, 600, 30 );
 
    params.erase(params.begin(),params.end());
    kpm.eta = 2.6;

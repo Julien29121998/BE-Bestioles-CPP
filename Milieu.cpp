@@ -115,13 +115,19 @@ void Milieu::handleCollisions(DBestiole* b){
    paire_t myCoords = b->getCoords();
 
    for(std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it){
-      
       paire_t theirCoords = (*it)->getCoords();
-
-      if((std::sqrt((theirCoords.x-myCoords.x)*(theirCoords.x-myCoords.x)+(theirCoords.y-myCoords.y)*(theirCoords.y-myCoords.y))<DBestiole::AFF_SIZE)
+      double deltx=theirCoords.x-myCoords.x;
+      double delty=theirCoords.y-myCoords.y;
+      double norm = std::sqrt(deltx*deltx+delty*delty);
+      if((norm<DBestiole::AFF_SIZE)
+      &&((deltx*std::cos(myCoords.ori)
+      +delty*std::sin(myCoords.ori))>0)
       &&(b->identite!=(*it)->identite)){  
          myCoords.ori=-myCoords.ori;
          theirCoords.ori=-theirCoords.ori;
+         double transition=myCoords.vite;
+         myCoords.vite=theirCoords.vite;
+         theirCoords.vite=transition;
          b->setCoords(myCoords);
          (*it)->setCoords(theirCoords);
 
