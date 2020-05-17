@@ -68,7 +68,7 @@ public :
    char* showID() const;
    virtual void action( Milieu & monMilieu)=0;
    virtual void draw( UImg & support )=0;
-   virtual void bouge(Milieu& monMilieu, double coef )=0;
+   virtual void bouge(Milieu& monMilieu, double coef, paire_t objectif)=0;
    virtual bool jeTeVois( const DBestiole* b ) const=0;
    virtual void initCoords( int xLim, int yLim )=0;
    virtual double getVisibilite() const=0;

@@ -30,7 +30,7 @@ public :
    virtual ~Bestiole();                              
    virtual void action( Milieu & monMilieu) override;
    virtual void draw( UImg & support ) override;
-   virtual void bouge(Milieu& monMilieu, double coef ) override;
+   virtual void bouge(Milieu& monMilieu, double coef, paire_t objectif ) override;
    virtual bool jeTeVois( const DBestiole* b ) const override;
    virtual void initCoords( int xLim, int yLim ) override;
    virtual double getVisibilite() const override;

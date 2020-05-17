@@ -11,7 +11,9 @@ using namespace std;
 
 struct CaraParams:BParams
 {
-   double omega;double eta;virtual void Add(Param_Dict& pd) override;
+   double omega;
+   double eta;
+   virtual void Add(Param_Dict& pd) override;
 };
 
 class Carapace: public Membre
@@ -24,7 +26,7 @@ public :
    virtual ~Carapace();                              
    virtual void draw( UImg & support ) override;
    virtual double getResist()const override;
-   virtual void bouge(Milieu& monMilieu,double coef) override;
+   virtual void bouge(Milieu& monMilieu,double coef, paire_t objectif) override;
    virtual DBestiole* copy() override;
 };
 

@@ -62,7 +62,7 @@ void Bestiole::initCoords( int xLim, int yLim )
 }
 
 
-void Bestiole::bouge(Milieu& monMilieu, double coef )
+void Bestiole::bouge(Milieu& monMilieu, double coef, paire_t objectif)
 {
    int xLim=monMilieu.getWidth();
    int yLim=monMilieu.getHeight();
@@ -105,8 +105,6 @@ void Bestiole::bouge(Milieu& monMilieu, double coef )
 void Bestiole::action( Milieu & monMilieu)
 {
    (*this->comportement)(monMilieu,coucheExterne);
-   coucheExterne->bouge( monMilieu,1. );
-
 }
 
 

@@ -18,8 +18,8 @@ void Membre::action( Milieu & monMilieu){
 void Membre::draw( UImg & support ){
     mybestiole->draw(support);
 }
-void Membre::bouge(Milieu& monMilieu, double coef ){
-    mybestiole->bouge(monMilieu,coef);
+void Membre::bouge(Milieu& monMilieu, double coef, paire_t objectif){
+    mybestiole->bouge(monMilieu,coef,objectif);
 }
 bool Membre::jeTeVois( const DBestiole* b ) const{
     return(mybestiole->jeTeVois(b));

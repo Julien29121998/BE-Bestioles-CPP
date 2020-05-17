@@ -34,8 +34,8 @@ void Carapace::draw( UImg & support )
 double Carapace::getResist()const{
    return omega*Membre::getResist();
 }
-void Carapace::bouge(Milieu& monMilieu,double coef){
-   Membre::bouge(monMilieu, coef/eta);
+void Carapace::bouge(Milieu& monMilieu,double coef, paire_t objectif){
+   Membre::bouge(monMilieu, coef/eta, objectif);
 }
 
 DBestiole* Carapace::copy()

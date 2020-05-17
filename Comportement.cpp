@@ -23,9 +23,8 @@ Dumb::~Dumb(){
     cout<<"dest Dumb"<<endl;
 }
 void Dumb::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
-    if(rand()%18==1){
-        cout<<coucheExterne->showID()<<" is Dumb"<<endl;
-    }
+    paire_t  info = coucheExterne->getCoords();
+    coucheExterne->bouge( monMilieu,1.,info);
 }
 Multiple::Multiple(){
     ComportementDuMultiple=nullptr;
@@ -37,10 +36,8 @@ Multiple::~Multiple(){
 void Multiple::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     if(ComportementDuMultiple==nullptr||rand()%300==1){
         ComportementDuMultiple=monMilieu.Comportements_Disponibles.at(rand()%monMilieu.Comportements_Disponibles.size());
-        cout<<"change multiple "<<typeid(*ComportementDuMultiple).name()<<endl;
     }
     if(rand()%18==1){
-        cout<<(coucheExterne->showID())<<" is Multiple"<<endl;
         (*ComportementDuMultiple)(monMilieu,coucheExterne);
     }
 }
@@ -56,9 +53,8 @@ Peureuse::~Peureuse(){
     cout<<"dest Peureuse"<<endl;
 }
 void Peureuse::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
-    if(rand()%18==1){
-        cout<<coucheExterne->showID()<<" is Peureuse"<<endl;
-    }
+    paire_t  info = coucheExterne->getCoords();
+    coucheExterne->bouge( monMilieu,1.,info);
 }
 
 Prevoyante::Prevoyante(){
@@ -68,9 +64,8 @@ Prevoyante::~Prevoyante(){
     cout<<"dest Prevoyante"<<endl;
 }
 void Prevoyante::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
-    if(rand()%18==1){
-        cout<<coucheExterne->showID()<<" is Prevoyante"<<endl;
-    }
+    paire_t  info = coucheExterne->getCoords();
+    coucheExterne->bouge( monMilieu,1.,info);
 }
 
 Kamikaze::Kamikaze(){
@@ -81,9 +76,8 @@ Kamikaze::~Kamikaze(){
 }
 
 void Kamikaze::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
-    if(rand()%18==1){
-        cout<<coucheExterne->showID()<<" is Kamikaze"<<endl;
-    }
+    paire_t  info = coucheExterne->getCoords();
+    coucheExterne->bouge( monMilieu,1.,info);
 }
 
 Gregaire::Gregaire(){
@@ -94,7 +88,6 @@ Gregaire::~Gregaire(){
 }
 
 void Gregaire::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
-    if(rand()%18==1){
-        cout<<coucheExterne->showID()<<" is Gregaire"<<endl;
-    }
+    paire_t  info = coucheExterne->getCoords();
+    coucheExterne->bouge( monMilieu,1.,info);
 }
