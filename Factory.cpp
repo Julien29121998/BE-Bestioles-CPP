@@ -44,8 +44,6 @@ void Factory::fillWith(vector<DBestiole*>& toFill, int count, Milieu& monMilieu)
       else{
           bo = new Bestiole(monMilieu.Comportement_par_defaut);
       }
-      DBestiole* lowest_layer = bo;
-
       it=myParams.find(string("Camouflages"));
       if(cond){
          bo = new Camouflages(bo,dynamic_cast<CamoParams*>(it->second)->phi);
@@ -70,7 +68,7 @@ void Factory::fillWith(vector<DBestiole*>& toFill, int count, Milieu& monMilieu)
          dynamic_cast<YeuxParams*>(it->second)->gamma,
          dynamic_cast<YeuxParams*>(it->second)->alpha);
       }
-      lowest_layer->setExterne(bo);
+      bo->setExterne(bo);
       bo->initCoords(monMilieu.getWidth(),monMilieu.getHeight());
       toFill.push_back(bo);
     }

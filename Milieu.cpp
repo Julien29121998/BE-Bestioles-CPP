@@ -61,7 +61,6 @@ void Milieu::step()
       
       (*it)->action( *this);
       (*it)->draw( *this );
-      this->nbVoisins(*it);
       DBestiole* newborn = (*it)->randomCloning();
       if(newborn!=nullptr){
          toAdd.push_back(newborn);
@@ -102,17 +101,25 @@ void Milieu::step()
 int Milieu::nbVoisins( const DBestiole*  b )
 {
 
-   int         nb = 0;
-
-
-   for ( std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   int nb = 0;
+   for ( std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it ){
       if ( !(b == *it) && b->jeTeVois(*it)) {
-         cout<<b->showID()<<" voit "<<(*it)->showID()<<endl;
          ++nb;
       }
+   }
 
    return nb;
 
+}
+std::vector<DBestiole*> Milieu::QuiVoisJe( const DBestiole* b)
+{
+   std::vector<DBestiole*> ans;
+   for ( std::vector<DBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it ){
+      if ( !(b == *it) && b->jeTeVois(*it)) {
+         ans.push_back(*it);
+      }
+   }
+   return ans;
 }
 
 void Milieu::kill(int id){

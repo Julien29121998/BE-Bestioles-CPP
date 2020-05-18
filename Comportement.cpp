@@ -54,6 +54,7 @@ Peureuse::~Peureuse(){
 }
 void Peureuse::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     paire_t  info = coucheExterne->getCoords();
+    //CHANGER LES VALEURS DE INFO.VITE ET INFO.ORI SUIVANT LE COMPORTEMENT;
     coucheExterne->bouge( monMilieu,1.,info);
 }
 
@@ -65,6 +66,7 @@ Prevoyante::~Prevoyante(){
 }
 void Prevoyante::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     paire_t  info = coucheExterne->getCoords();
+    //CHANGER LES VALEURS DE INFO.VITE ET INFO.ORI SUIVANT LE COMPORTEMENT;
     coucheExterne->bouge( monMilieu,1.,info);
 }
 
@@ -77,6 +79,7 @@ Kamikaze::~Kamikaze(){
 
 void Kamikaze::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     paire_t  info = coucheExterne->getCoords();
+    //CHANGER LES VALEURS DE INFO.VITE ET INFO.ORI SUIVANT LE COMPORTEMENT;
     coucheExterne->bouge( monMilieu,1.,info);
 }
 
@@ -89,5 +92,18 @@ Gregaire::~Gregaire(){
 
 void Gregaire::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     paire_t  info = coucheExterne->getCoords();
+    double vite_moy;
+    double ori_moy;
+    auto voisins = monMilieu.QuiVoisJe(coucheExterne);
+    int size = voisins.size();
+    if(size!=0){
+    for(auto it=voisins.begin();it!=voisins.end();++it){
+        paire_t v_info=(*it)->getCoords();
+        vite_moy+=v_info.vite;
+        ori_moy+=v_info.ori;
+    }
+    info.vite=vite_moy/size;
+    info.ori=ori_moy/size;
+    }
     coucheExterne->bouge( monMilieu,1.,info);
 }
