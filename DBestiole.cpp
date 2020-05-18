@@ -4,7 +4,7 @@
 #include "Milieu.h"
 
 const double       DBestiole::AFF_SIZE = 8.;
-const double       DBestiole::MAX_VITESSE = 6.8;
+const double       DBestiole::MAX_VITESSE = 6.5;
 const double       DBestiole::MAX_PHI =1.;
 const double       DBestiole::MIN_PHI =0.;
 const double       DBestiole::MAX_DELTA_O = 39.6;
@@ -23,8 +23,8 @@ const double       DBestiole::MAX_NU =2.7;
 const double       DBestiole::CLONE_RATE = 0.0008;
 const double       DBestiole::GENERATION_RATE = 3.26;
 const double       DBestiole::SURVIVE_COLLISION=0.88;
-const double       DBestiole::PROPORTION_CHANGE=0.275;
-const int          DBestiole::LIFE = 600;
+const double       DBestiole::PROPORTION_CHANGE=0.197;
+const int          DBestiole::LIFE = 660;
 long int           DBestiole::next = 0;
 
 BParams::~BParams(){}

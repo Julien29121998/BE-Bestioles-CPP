@@ -1,6 +1,9 @@
 #include "Comportement.h"
 using namespace std;
 
+auto norm = [](double x, double y){return std::sqrt(x*x+y*y);};
+auto carctan= [](double x, double y){return ((x!=0)?atan(y/x):M_PI/2)+((y<0)+(x*y<0)+(x<0&&!y))*M_PI;};
+
 void ComportParams::Add(Param_Dict& pd)
 {
     PushWith(string("Comportement"),pd);
@@ -54,7 +57,23 @@ Peureuse::~Peureuse(){
 }
 void Peureuse::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     paire_t  info = coucheExterne->getCoords();
-    //CHANGER LES VALEURS DE INFO.VITE ET INFO.ORI SUIVANT LE COMPORTEMENT;
+    int size=monMilieu.nbVoisins(coucheExterne);
+    if(size>=2){
+        double x_sum=0;
+        double y_sum=0;
+        auto voisins = monMilieu.QuiVoisJe(coucheExterne);
+        for(auto it=voisins.begin();it!=voisins.end();++it){
+            paire_t v_info=(*it)->getCoords();
+            x_sum+=v_info.vite*cos(v_info.ori);
+            y_sum+=v_info.vite*sin(v_info.ori);
+        }
+    info.vite=info.vite*2+DBestiole::getVmax()/2;
+    info.ori=-carctan(x_sum,y_sum);
+    }
+    else{
+        info.ori=info.ori+fmod(rand(),M_PI/4)-M_PI/8;
+        info.vite=static_cast<float>(rand())/RAND_MAX*DBestiole::getVmax();
+    }
     coucheExterne->bouge( monMilieu,1.,info);
 }
 
@@ -79,7 +98,27 @@ Kamikaze::~Kamikaze(){
 
 void Kamikaze::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     paire_t  info = coucheExterne->getCoords();
-    //CHANGER LES VALEURS DE INFO.VITE ET INFO.ORI SUIVANT LE COMPORTEMENT;
+    paire_t v_info;
+    double distance_min=static_cast<double>(INFINITY);
+    auto voisins = monMilieu.QuiVoisJe(coucheExterne);
+    DBestiole* proie=nullptr;
+    for(auto it=voisins.begin();it!=voisins.end();++it){
+        v_info=(*it)->getCoords();
+        double norme = norm(v_info.x-info.x,v_info.y-info.y);
+        if(norme<distance_min){
+            distance_min=norme;
+            proie=(*it);
+        }
+    }
+    if(proie!=nullptr){
+        v_info = proie->getCoords();
+        info.vite=v_info.vite+0.5*norm(v_info.x-info.x,v_info.y-info.y);
+        info.ori=carctan(v_info.x-info.x,v_info.y-info.y);
+    }
+    else{
+        info.vite-=0.5;
+        info.vite=(info.vite<(DBestiole::getVmax()/5)?DBestiole::getVmax()/5:info.vite);
+    }
     coucheExterne->bouge( monMilieu,1.,info);
 }
 
@@ -92,18 +131,18 @@ Gregaire::~Gregaire(){
 
 void Gregaire::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     paire_t  info = coucheExterne->getCoords();
-    double vite_moy;
-    double ori_moy;
+    double x_sum=0;
+    double y_sum=0;
     auto voisins = monMilieu.QuiVoisJe(coucheExterne);
     int size = voisins.size();
     if(size!=0){
     for(auto it=voisins.begin();it!=voisins.end();++it){
         paire_t v_info=(*it)->getCoords();
-        vite_moy+=v_info.vite;
-        ori_moy+=v_info.ori;
+        x_sum+=v_info.vite*cos(v_info.ori);
+        y_sum+=v_info.vite*sin(v_info.ori);
     }
-    info.vite=vite_moy/size;
-    info.ori=ori_moy/size;
+    info.vite=norm(x_sum,y_sum)/size;
+    info.ori=carctan(x_sum,y_sum);
     }
     coucheExterne->bouge( monMilieu,1.,info);
 }

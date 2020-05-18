@@ -65,7 +65,8 @@ private :
  
 public :                                      
    DBestiole();                               
-   virtual ~DBestiole();                     
+   virtual ~DBestiole(); 
+   static double getVmax(){return MAX_VITESSE;};                   
    char* showID() const;
    virtual void action( Milieu & monMilieu)=0;
    virtual void draw( UImg & support )=0;
