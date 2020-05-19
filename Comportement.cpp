@@ -126,6 +126,7 @@ Kamikaze::~Kamikaze(){
 }
 
 void Kamikaze::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
+    double Kamikaze_val=0.5;
     paire_t  info = coucheExterne->getCoords();
     paire_t v_info;
     double distance_min=static_cast<double>(INFINITY);
@@ -141,11 +142,11 @@ void Kamikaze::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     }
     if(proie!=nullptr){
         v_info = proie->getCoords();
-        info.vite=v_info.vite+0.5*norm(v_info.x-info.x,v_info.y-info.y);
-        info.ori=carctan(v_info.x-info.x,v_info.y-info.y);
+        info.vite=(1+Kamikaze_val)*v_info.vite;
+        info.ori=carctan(v_info.x+v_info.vite*cos(v_info.ori)-info.x,v_info.y+v_info.vite*sin(v_info.ori)-info.y);
     }
     else{
-        info.vite-=0.5;
+        info.vite-=Kamikaze_val;
         info.vite=(info.vite<(DBestiole::getVmax()/5)?DBestiole::getVmax()/5:info.vite);
     }
     coucheExterne->bouge( monMilieu,1.,info);
