@@ -68,10 +68,10 @@ int main()
    ypm3.delta=48.6;
    ypm3.gamma=0.4;
    ypm3.alpha=0.78;
-   compm3.Comportement=COMP_GREGAIRE;
+   compm3.Comportement=COMP_KAMIKAZE;
    ypm3.Add(paramsf3);
    compm3.Add(paramsf3);
-   Factory fact = Factory(paramsf3,0.8);
+   Factory fact = Factory(paramsf3,0.2);
    ecosysteme.getMilieu().listeFactories.push_back(fact);
 
    Param_Dict paramsf4;
@@ -87,12 +87,12 @@ int main()
    opm4.delta=16.9;
    opm4.gamma=0.88;
    npm4.nu=1.8;
-   compm4.Comportement=COMP_KAMIKAZE;
+   compm4.Comportement=COMP_PREVOYANTE;
    ypm4.Add(paramsf4);
    opm4.Add(paramsf4);
    compm4.Add(paramsf4);
    npm4.Add(paramsf4);
-   fact = Factory(paramsf4,0.2);
+   fact = Factory(paramsf4,0.8);
    ecosysteme.getMilieu().listeFactories.push_back(fact);
 
    ecosysteme.run();

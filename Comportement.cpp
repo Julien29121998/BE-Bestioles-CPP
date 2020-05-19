@@ -85,7 +85,36 @@ Prevoyante::~Prevoyante(){
 }
 void Prevoyante::operator()(Milieu& monMilieu, DBestiole* coucheExterne){
     paire_t  info = coucheExterne->getCoords();
-    //CHANGER LES VALEURS DE INFO.VITE ET INFO.ORI SUIVANT LE COMPORTEMENT;
+    paire_t v_info;
+    double distance_min=static_cast<double>(INFINITY);
+    auto voisins = monMilieu.QuiVoisJe(coucheExterne);
+    DBestiole* proie=nullptr;
+    for(auto it=voisins.begin();it!=voisins.end();++it){
+        v_info=(*it)->getCoords();
+        double norme = norm(
+        v_info.x+v_info.vite*cos(v_info.ori)
+        -info.x-info.vite*cos(info.ori),
+        v_info.y+v_info.vite*sin(v_info.ori)
+        -info.y-info.vite*sin(info.ori));
+        if(norme<distance_min){
+            distance_min=norme;
+            proie=(*it);
+        }
+    }
+
+    info.vite=static_cast<float>(rand())/RAND_MAX*DBestiole::getVmax();
+
+    if(proie!=nullptr){
+        v_info = proie->getCoords();
+        double difx = v_info.x-info.x;
+        double dify = v_info.y-info.y;
+        int signe = ((dify)*cos(info.ori)-(difx)*sin(info.ori))>0?1:-1;
+        info.ori=carctan(signe*(dify+v_info.vite*sin(v_info.ori)),-signe*(difx+v_info.vite*cos(v_info.ori)));
+    }
+    else{        
+        info.ori=info.ori+fmod(rand(),M_PI/4)-M_PI/8;
+    }
+
     coucheExterne->bouge( monMilieu,1.,info);
 }
 
