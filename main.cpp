@@ -31,7 +31,7 @@ int main()
    cpm1.phi=0.1;
    opm1.delta=26.5;
    opm1.gamma=0.3;
-   compm1.Comportement=COMP_MULTIPLE;
+   compm1.Comportement=COMP_GREGAIRE;
    opm1.Add(paramsf1);
    kpm1.Add(paramsf1);
    cpm1.Add(paramsf1);
@@ -68,7 +68,7 @@ int main()
    ypm3.delta=48.6;
    ypm3.gamma=0.4;
    ypm3.alpha=0.78;
-   compm3.Comportement=COMP_GREGAIRE;
+   compm3.Comportement=COMP_MULTIPLE;
    ypm3.Add(paramsf3);
    compm3.Add(paramsf3);
    fact = Factory(paramsf3,0.25);
