@@ -8,6 +8,7 @@
 #include <map>
 
 class Milieu;
+class Interpreter;
 struct BParams;
 
 using namespace std;
@@ -37,6 +38,7 @@ virtual BParams* cppm() const=0;
 
 class DBestiole{
 friend class Milieu;
+friend class Interpreter;
 protected :
    static const double     AFF_SIZE;
    static const double     MAX_VITESSE;

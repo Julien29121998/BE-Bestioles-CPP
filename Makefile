@@ -1,7 +1,10 @@
 all: main author info
 
-main : main.cpp Aquarium.o DBestiole.o Bestiole.o Milieu.o Membre.o Camouflages.o Nageoire.o Carapace.o Capteur.o Oreilles.o Yeux.o Factory.o Comportement.o
-	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o DBestiole.o Bestiole.o Membre.o Camouflages.o Nageoire.o Carapace.o Milieu.o Capteur.o Oreilles.o Yeux.o Factory.o Comportement.o -I . -lX11 -lpthread
+main : main.cpp Aquarium.o Interpreter.o DBestiole.o Bestiole.o Milieu.o Membre.o Camouflages.o Nageoire.o Carapace.o Capteur.o Oreilles.o Yeux.o Factory.o Comportement.o
+	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o Interpreter.o DBestiole.o Bestiole.o Membre.o Camouflages.o Nageoire.o Carapace.o Milieu.o Capteur.o Oreilles.o Yeux.o Factory.o Comportement.o -I . -lX11 -lpthread
+
+Interpreter.o : Interpreter.h Factory.h Milieu.h DBestiole.h Membre.h Bestiole.h Capteur.h Yeux.h Oreilles.h Nageoire.h Camouflages.h Carapace.h Comportement.h Interpreter.cpp 
+	g++ -Wall -std=c++11 -c Interpreter.cpp -I .
 
 Aquarium.o : Aquarium.h DBestiole.h Aquarium.cpp
 	g++ -Wall -std=c++11  -c Aquarium.cpp -I .

@@ -9,6 +9,7 @@
 #include "Carapace.h"
 #include "Capteur.h"
 #include "Oreilles.h"
+#include "Interpreter.h"
 
 #include <iostream>
 
@@ -19,6 +20,7 @@ int main()
 {
 
    Aquarium       ecosysteme( 60, 800, 600, 30 );
+   Interpreter i;
 
    Param_Dict paramsf;
    CamoParams* cpm = new CamoParams;
@@ -80,7 +82,7 @@ int main()
    fact = Factory(paramsf,0.25);
    ecosysteme.getMilieu().listeFactories.push_back(fact);
 
-   
+
    delete cpm;
    delete kpm;
    delete npm;
