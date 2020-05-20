@@ -27,7 +27,9 @@ const double       DBestiole::PROPORTION_CHANGE=0.197;
 const int          DBestiole::LIFE = 660;
 long int           DBestiole::next = 0;
 
-BParams::~BParams(){}
+BParams::BParams(){cout<<"p@"<<(this)<<endl;}
+BParams::~BParams(){cout<<"~p@"<<(this)<<endl;}
+
 void BParams::PushWith(string key, Param_Dict& pd){
     pd.emplace(make_pair(key,this));
 }

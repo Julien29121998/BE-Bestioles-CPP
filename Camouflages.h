@@ -13,6 +13,7 @@ struct CamoParams:BParams
 {
    double phi;
    virtual void Add(Param_Dict& pd) override;
+   virtual BParams* cppm() const override;
 };
 
 class Camouflages: public Membre

@@ -13,6 +13,8 @@ struct NageoParams:BParams
 {
    double nu;
    virtual void Add(Param_Dict& pd) override;
+   virtual BParams* cppm() const override;
+
 };
 
 class Nageoire: public Membre

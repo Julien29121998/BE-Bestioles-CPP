@@ -9,6 +9,13 @@ void OreParams::Add(Param_Dict& pd)
     PushWith(string("Oreilles"),pd);
 }
 
+BParams* OreParams::cppm() const{
+   OreParams* p = new OreParams();
+   p->delta=this->delta;
+   p->gamma=this->gamma;
+   return p;
+}
+
 Oreilles::Oreilles(DBestiole* dbestiole,double deltao, double gammao):
 Capteur(dbestiole,
 ((deltao>MAX_DELTA_O)?MAX_DELTA_O:((deltao<MIN_DELTA_O)?MIN_DELTA_O:deltao)),

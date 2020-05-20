@@ -28,9 +28,11 @@ typedef struct exact_coords {
 
 struct BParams
 {
+BParams();
 virtual ~BParams();
 void PushWith(string key,Param_Dict& pd);
 virtual void Add(Param_Dict& pd)=0;
+virtual BParams* cppm() const=0;
 };
 
 class DBestiole{

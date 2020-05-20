@@ -15,6 +15,7 @@ struct YeuxParams:BParams
    double gamma;
    double alpha;
    virtual void Add(Param_Dict& pd) override;
+   virtual BParams* cppm() const override;
 };
 
 class Yeux: public Capteur

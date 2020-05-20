@@ -5,11 +5,20 @@ Factory::Factory(Param_Dict params,const double prop): proportion(prop){
     cout<<"const Factory"<<endl;
     this->setParams(params);
 }
-void Factory::setParams(Param_Dict params){
-    myParams=Param_Dict(params.begin(),params.end());
+void Factory::drop(Param_Dict& pmd){
+    for_each(pmd.begin(),pmd.end(), [](std::pair<string,BParams*> pair){delete pair.second;});
+    pmd.erase(pmd.begin(),pmd.end());
 }
-Param_Dict* Factory::getParams(){
-    return &myParams;
+void Factory::Drop(){
+    drop(this->myParams);
+}
+void Factory::setParams(Param_Dict params){
+    this->Drop();
+    for(auto it=params.begin();it!=params.end();++it)
+    {
+        myParams.emplace(make_pair(it->first,it->second->cppm()));
+
+    }
 }
 
 Factory::Factory(const Factory& f):Factory(f.myParams,f.proportion){
@@ -17,11 +26,12 @@ Factory::Factory(const Factory& f):Factory(f.myParams,f.proportion){
 }
 
 Factory& Factory::operator= (Factory f){
-    this->myParams=f.myParams;
+    this->setParams(f.myParams);
     this->proportion=f.proportion;
     return(*this);
 }
 Factory::~Factory(){
+    this->Drop();
     cout<<"dest Factory"<<endl;
 
 }

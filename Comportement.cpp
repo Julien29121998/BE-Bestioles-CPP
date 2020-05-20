@@ -9,6 +9,12 @@ void ComportParams::Add(Param_Dict& pd)
     PushWith(string("Comportement"),pd);
 }
 
+BParams* ComportParams::cppm() const{
+    ComportParams* p =new ComportParams();
+    p->Comportement=this->Comportement;
+    return p;
+}
+
 const int   IComportement::MULTIPLE_CHANGE_RATE=300;
 
 IComportement::IComportement(){

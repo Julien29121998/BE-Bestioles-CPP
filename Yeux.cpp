@@ -9,6 +9,14 @@ void YeuxParams::Add(Param_Dict& pd)
     PushWith(string("Yeux"),pd);
 }
 
+BParams* YeuxParams::cppm() const{
+   YeuxParams* p = new YeuxParams();
+   p->delta=this->delta;
+   p->gamma=this->gamma;
+   p->alpha=this->alpha;
+   return p;
+}
+
 Yeux::Yeux(DBestiole* dbestiole,double deltay, double gammay,double alpha):
 Capteur(dbestiole,
 ((deltay>MAX_DELTA_Y)?MAX_DELTA_Y:((deltay<MIN_DELTA_Y)?MIN_DELTA_Y:deltay)),

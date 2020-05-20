@@ -9,6 +9,12 @@ void CamoParams::Add(Param_Dict& pd)
     PushWith(string("Camouflages"),pd);
 }
 
+BParams* CamoParams::cppm() const{
+   CamoParams* p = new CamoParams();
+   p->phi=this->phi;
+   return p;
+}
+
 Camouflages::Camouflages(DBestiole* dbestiole,double phi):Membre(dbestiole),phi(((phi>MAX_PHI)?MAX_PHI:((phi<MIN_PHI)?MIN_PHI:phi)))
 {
    cout<<"const Camouflages"<<endl;

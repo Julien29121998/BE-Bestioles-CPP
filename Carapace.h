@@ -14,6 +14,7 @@ struct CaraParams:BParams
    double omega;
    double eta;
    virtual void Add(Param_Dict& pd) override;
+   virtual BParams* cppm() const override;
 };
 
 class Carapace: public Membre

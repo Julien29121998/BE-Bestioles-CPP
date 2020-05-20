@@ -14,6 +14,7 @@ struct OreParams:BParams
    double delta;
    double gamma;
    virtual void Add(Param_Dict& pd) override;
+   virtual BParams* cppm() const override;
 };
 
 class Oreilles: public Capteur

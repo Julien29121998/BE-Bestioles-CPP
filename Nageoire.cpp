@@ -9,6 +9,11 @@ void NageoParams::Add(Param_Dict& pd)
     PushWith(string("Nageoire"),pd);
 }
 
+BParams* NageoParams::cppm() const{
+   NageoParams* p = new NageoParams();
+   p->nu=this->nu;
+   return p;
+}
 Nageoire::Nageoire(DBestiole* dbestiole,double nu):Membre(dbestiole),nu(((nu>MAX_NU)?MAX_NU:((nu<1)?1:nu)))
 {
    cout<<"const Nageoire"<<endl;

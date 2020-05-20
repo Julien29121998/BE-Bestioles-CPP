@@ -26,8 +26,9 @@ public:
     Factory(const Factory& f);
     Factory& operator= (Factory f);
     void setParams(Param_Dict params);
-    Param_Dict* getParams();
-    ~Factory();
     void fillWith(vector<DBestiole*>& toFill, int count,Milieu& monMilieu)const;
+    ~Factory();
+    static void drop(Param_Dict& pmd);
+    void Drop();
 };
 #endif

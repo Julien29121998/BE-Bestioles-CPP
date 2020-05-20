@@ -16,6 +16,7 @@ struct ComportParams:BParams
 {
    int Comportement;
    virtual void Add(Param_Dict& pd) override;
+   virtual BParams* cppm() const override;
 };
 
 class IComportement{
