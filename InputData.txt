@@ -1,0 +1,30 @@
+Simulation
+
+
+Bestioles
+
+Type Troupeau p: 0.25
+
+Carapace eta 2.6 omega 3.8
+Camouflages phi 0.1
+Oreilles delta 26.5 gamma 0.3
+Comportement Gregaire
+
+
+Type Thinker p: 0.25
+Oreilles gamma 0.9 delta 18.5
+Nageoire nu 2.6
+Camouflages phi 0.2
+Comportement Prevoyante
+
+Type Rusé p: 0.25
+Yeux delta 48.6 alpha 0.78 gamma 0.4
+Comportement Multiple
+
+Type Chasseur p: 0.25
+Yeux delta 31. alpha 0.66 gamma 0.4
+Oreilles delta 16.9 gamma 0.88
+Nageoire nu 1.8
+Comportement Kamikaze
+
+Stop

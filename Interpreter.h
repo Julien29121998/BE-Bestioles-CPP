@@ -21,19 +21,22 @@ private:
     OreParams* opm;
     YeuxParams* ypm;
     ComportParams* compm;
+    double sum;
 public:
     Interpreter();
     ~Interpreter();
-    Factory readBType(ifstream& source,Aquarium& ecosysteme);
+    void fromFile(string File,Aquarium& ecosysteme);
+    double readBType(ifstream& source, string first_line, vector<Factory>& dest);
     string readWord(string& source);
 private:
-    void readCaracs(ifstream& source,string& line,string& word);
+    void readCaracs(ifstream& source, string first_line, vector<Factory>& dest, double proportion);
     void readCamoParam(string& line,string& word);
     void readCaraParam(string& line,string& word);
     void readNageoParam(string& line,string& word);
     void readOreParam(string& line,string& word);
     void readYeuxParam(string& line,string& word);
     bool readComportParam(string& line,string& word);
+    void nextBlock();
 
 };
 
