@@ -36,8 +36,6 @@ private:
     void readOreParam(string& line,string& word);
     void readYeuxParam(string& line,string& word);
     bool readComportParam(string& line,string& word);
-    void nextBlock();
-
 };
 
 
