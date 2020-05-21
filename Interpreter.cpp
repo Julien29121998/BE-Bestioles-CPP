@@ -65,7 +65,7 @@ void Interpreter::readCaracs(ifstream& source, string first_line, vector<Factory
         else if(word=="Oreilles") this->readOreParam(line,word);
         else if(word=="Yeux") this->readYeuxParam(line,word);
         else if(word=="Comportement") hasComp=this->readComportParam(line,word);
-        else {break;};
+        else if(!word.empty()){break;};
         getline(source,line),word=this->readWord(line);
     }
     if(!hasComp){
@@ -198,6 +198,6 @@ void Interpreter::fromFile(string file,Aquarium& ecosysteme){
 
     }
 if(sum!=1.){
-    cout<<"ATTENTION: la Somme des Proportions n'est pas 1. Effectifs réels des Bestiole Indéfini..."<<endl;
+    cout<<"ATTENTION: la Somme des Proportions n'est pas 1 ("<<sum<<"). Effectifs réels des Bestiole Indéfini (Sera supérieur ou inférieur à la valeur donnée)..."<<endl;
 }
 }
