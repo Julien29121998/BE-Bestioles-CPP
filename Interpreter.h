@@ -21,6 +21,7 @@ private:
     OreParams* opm;
     YeuxParams* ypm;
     ComportParams* compm;
+    Aquarium* ecosysteme;
     double sum;
     int Population=64;
     int Height=600;
@@ -28,7 +29,7 @@ private:
 public:
     Interpreter();
     ~Interpreter();
-    void fromFile(string File,Aquarium& ecosysteme);
+    void fromFile(string File);
     double readBType(ifstream& source, string first_line, vector<Factory>& dest);
     string readWord(string& source);
 private:

@@ -19,15 +19,8 @@ using namespace std;
 
 int main()
 {
-
-   Aquarium       ecosysteme( 60, 800, 600, 30 );
-
    Interpreter i;
-
-   i.fromFile("InputData.txt",ecosysteme);
-   ecosysteme.run();
-
-
+   i.fromFile("InputData.txt");
    return 0;
 
 }

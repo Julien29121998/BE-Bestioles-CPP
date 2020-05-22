@@ -7,10 +7,11 @@ using namespace std;
 Interpreter::Interpreter(){
    cpm = new CamoParams;kpm = new CaraParams;npm = new NageoParams;
    opm = new OreParams;ypm = new YeuxParams;compm = new ComportParams;
-   sum=0.0;
+   sum=0.0;ecosysteme=nullptr;
 }
 Interpreter::~Interpreter(){
    delete cpm;delete kpm;delete npm;delete opm;delete ypm;delete compm;
+   if(ecosysteme!=nullptr) delete ecosysteme;
 }
 string Interpreter::readWord(string& line){
     string word;
@@ -171,7 +172,7 @@ bool Interpreter::readComportParam(string& line,string& word){
     cout<<"Comportement: "<<compm->Comportement<<endl;
     return true;
 }
-void Interpreter::fromFile(string file,Aquarium& ecosysteme){
+void Interpreter::fromFile(string file){
     string line;
     string word;
     ifstream input;
@@ -182,19 +183,24 @@ void Interpreter::fromFile(string file,Aquarium& ecosysteme){
         if(word=="Bestioles"&&isDefined){
             while(getline(input,line),word=this->readWord(line),line.empty()){cout<<"...";}
             if(word=="Type"){
-                sum+=readBType(input,line, ecosysteme.getMilieu().listeFactories);break;
+                sum+=readBType(input,line, ecosysteme->getMilieu().listeFactories);break;
             }
         }
-        else if(word=="Simulation"){
-            while(getline(input,line),word=this->readWord(line),word=="Propriété"||word=="Propriete"){
-                readProp(line);
+        else if(word=="Simulation"&&!isDefined){
+            while(getline(input,line),word=this->readWord(line),word=="Propriété"||word=="Propriete"||word.empty()){
+                if(word.empty()){
+                    cout<<"...";
+                }else{
+                    readProp(line);
+                }
             }
             isDefined=true;
+            ecosysteme=new Aquarium(Population,Width,Height, 30 );
             continue;
         }
         else if(word.empty()){cout<<"...";}
         else{
-            cout<<"ATTENTION: erreurs de lecture: "<<word<<endl;
+            cout<<"ATTENTION: erreur de lecture: "<<word<<endl;
             break;
         }
         getline(input,line),word=this->readWord(line);
@@ -202,6 +208,10 @@ void Interpreter::fromFile(string file,Aquarium& ecosysteme){
     }
 if(sum!=1.){
     cout<<"ATTENTION: la Somme des Proportions n'est pas 1 ("<<sum<<"). Effectifs réels des Bestiole Indéfini (Sera supérieur ou inférieur à la valeur donnée)..."<<endl;
+}
+if(ecosysteme!=nullptr){
+    cout<<"DEBUT DE LA SIMULATION"<<endl;
+    ecosysteme->run();
 }
 }
 void Interpreter::readProp(string& line){
@@ -238,6 +248,6 @@ void Interpreter::readProp(string& line){
     else if(paramName=="WINDOW_H"){word=this->readWord(line);try{readv=stoi(word);valid=(readv>=400);}catch(invalid_argument){}Width=(valid?readv:defaultvalue=Width);}
     else if(paramName=="WINDOW_W"){word=this->readWord(line);try{readv=stoi(word);valid=(readv>=400);}catch(invalid_argument){}Height=(valid?readv:defaultvalue=Height);}
     else{cout<<"ATTENTION: Propriété "<<paramName<<" inconnue..."<<endl;}
-    if(!valid){cout<<"ATTENTION: Valeur illisible ou inappropriée pour la propriété "<<paramName<<": "<<word<<"... valeur remplacée par la valeur prédéfinie"<<defaultvalue<<endl;}
+    if(!valid){cout<<"ATTENTION: Valeur illisible ou inappropriée pour la propriété "<<paramName<<": "<<word<<"... valeur remplacée par la valeur prédéfinie "<<defaultvalue<<endl;}
 
 }
