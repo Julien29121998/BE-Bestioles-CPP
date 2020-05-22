@@ -15,7 +15,7 @@ BParams* ComportParams::cppm() const{
     return p;
 }
 
-const int   IComportement::MULTIPLE_CHANGE_RATE=300;
+int IComportement::MULTIPLE_CHANGE_RATE=300;
 
 IComportement::IComportement(){
     cout<<"const IC"<<endl;

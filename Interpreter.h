@@ -22,6 +22,9 @@ private:
     YeuxParams* ypm;
     ComportParams* compm;
     double sum;
+    int Population=64;
+    int Height=600;
+    int Width=800;
 public:
     Interpreter();
     ~Interpreter();
@@ -36,6 +39,7 @@ private:
     void readOreParam(string& line,string& word);
     void readYeuxParam(string& line,string& word);
     bool readComportParam(string& line,string& word);
+    void readProp(string& line);
 };
 
 

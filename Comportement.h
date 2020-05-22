@@ -11,6 +11,7 @@
 #define COMP_PREVOYANTE 2
 #define COMP_GREGAIRE 3
 
+struct Interpreter;
 
 struct ComportParams:BParams
 {
@@ -20,8 +21,9 @@ struct ComportParams:BParams
 };
 
 class IComportement{
+friend class Interpreter;
 protected:
-    static const int MULTIPLE_CHANGE_RATE;
+    static int MULTIPLE_CHANGE_RATE;
 public:
     IComportement();
     virtual ~IComportement();

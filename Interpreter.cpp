@@ -186,8 +186,11 @@ void Interpreter::fromFile(string file,Aquarium& ecosysteme){
             }
         }
         else if(word=="Simulation"){
-            cout<<"UNIMPLEMENTED"<<endl;
+            while(getline(input,line),word=this->readWord(line),word=="Propriété"||word=="Propriete"){
+                readProp(line);
+            }
             isDefined=true;
+            continue;
         }
         else if(word.empty()){cout<<"...";}
         else{
@@ -200,4 +203,41 @@ void Interpreter::fromFile(string file,Aquarium& ecosysteme){
 if(sum!=1.){
     cout<<"ATTENTION: la Somme des Proportions n'est pas 1 ("<<sum<<"). Effectifs réels des Bestiole Indéfini (Sera supérieur ou inférieur à la valeur donnée)..."<<endl;
 }
+}
+void Interpreter::readProp(string& line){
+    string word="Propriété Introuvable";
+    string paramName;
+    double readv;
+    bool valid=false;
+    float defaultvalue=0.;
+    paramName=this->readWord(line);
+    if(paramName=="AFF_SIZE"){word=this->readWord(line);try{readv=stod(word);valid=(readv>=3.1);}catch(invalid_argument){}DBestiole::AFF_SIZE=(valid?readv:defaultvalue=DBestiole::AFF_SIZE);}
+    else if(paramName=="MULTIPLE_CHANGE_RATE"){word=this->readWord(line);try{readv=stoi(word);valid=(readv>=10);}catch(invalid_argument){}IComportement::MULTIPLE_CHANGE_RATE=(valid?readv:defaultvalue=IComportement::MULTIPLE_CHANGE_RATE);}
+    else if(paramName=="MAX_VITESSE"){word=this->readWord(line);try{readv=stod(word);valid=(readv>=2.&&readv<=10.);}catch(invalid_argument){}DBestiole::MAX_VITESSE=(valid?readv:defaultvalue=DBestiole::MAX_VITESSE);}
+    else if(paramName=="MAX_PHI"){word=this->readWord(line);try{readv=stod(word);valid=(readv>=DBestiole::MIN_PHI&&readv>=0);}catch(invalid_argument){}DBestiole::MAX_PHI=(valid?readv:defaultvalue=DBestiole::MAX_PHI);}
+    else if(paramName=="MIN_PHI"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=DBestiole::MAX_PHI&&readv>=0);}catch(invalid_argument){}DBestiole::MIN_PHI=(valid?readv:defaultvalue=DBestiole::MIN_PHI);}
+    else if(paramName=="MAX_DELTA_O"){word=this->readWord(line);try{readv=stod(word);valid=(readv>=DBestiole::MIN_DELTA_O&&readv>=0);}catch(invalid_argument){}DBestiole::MAX_DELTA_O=(valid?readv:defaultvalue=DBestiole::MAX_DELTA_O);}
+    else if(paramName=="MIN_DELTA_O"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=DBestiole::MAX_DELTA_O&&readv>=0);}catch(invalid_argument){}DBestiole::MIN_DELTA_O=(valid?readv:defaultvalue=DBestiole::MIN_DELTA_O);}
+    else if(paramName=="MAX_GAMMA_O"){word=this->readWord(line);try{readv=stod(word);valid=(readv>=DBestiole::MIN_GAMMA_O&&readv>=0);}catch(invalid_argument){}DBestiole::MAX_GAMMA_O=(valid?readv:defaultvalue=DBestiole::MAX_GAMMA_O);}
+    else if(paramName=="MIN_GAMMA_O"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=DBestiole::MAX_GAMMA_O&&readv>=0);}catch(invalid_argument){}DBestiole::MIN_GAMMA_O=(valid?readv:defaultvalue=DBestiole::MIN_GAMMA_O);}
+    else if(paramName=="MAX_DELTA_Y"){word=this->readWord(line);try{readv=stod(word);valid=(readv>=DBestiole::MIN_DELTA_Y&&readv>=0);}catch(invalid_argument){}DBestiole::MAX_DELTA_Y=(valid?readv:defaultvalue=DBestiole::MAX_DELTA_Y);}
+    else if(paramName=="MIN_DELTA_Y"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=DBestiole::MAX_DELTA_Y&&readv>=0);}catch(invalid_argument){}DBestiole::MIN_DELTA_Y=(valid?readv:defaultvalue=DBestiole::MIN_DELTA_Y);}
+    else if(paramName=="MAX_GAMMA_Y"){word=this->readWord(line);try{readv=stod(word);valid=(readv>=DBestiole::MIN_GAMMA_Y&&readv>=0);}catch(invalid_argument){}DBestiole::MAX_GAMMA_Y=(valid?readv:defaultvalue=DBestiole::MAX_GAMMA_Y);}
+    else if(paramName=="MIN_GAMMA_Y"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=DBestiole::MAX_GAMMA_Y&&readv>=0);}catch(invalid_argument){}DBestiole::MIN_GAMMA_Y=(valid?readv:defaultvalue=DBestiole::MIN_GAMMA_Y);}
+    else if(paramName=="MAX_ALPHA"){word=this->readWord(line);try{readv=stod(word);valid=(readv>=DBestiole::MIN_ALPHA&&readv>=0);}catch(invalid_argument){}DBestiole::MAX_ALPHA=(valid?readv:defaultvalue=DBestiole::MAX_ALPHA);}
+    else if(paramName=="MIN_ALPHA"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=DBestiole::MAX_ALPHA&&readv>=0);}catch(invalid_argument){}DBestiole::MIN_ALPHA=(valid?readv:defaultvalue=DBestiole::MIN_ALPHA);}
+    else if(paramName=="MAX_OMEGA"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=15.0&&readv>=1.0);}catch(invalid_argument){}DBestiole::MAX_OMEGA=(valid?readv:defaultvalue=DBestiole::MAX_OMEGA);}
+    else if(paramName=="MAX_ETA"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=15.0&&readv>=1.0);}catch(invalid_argument){}DBestiole::MAX_ETA=(valid?readv:defaultvalue=DBestiole::MAX_ETA);}
+    else if(paramName=="MAX_NU"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=15.0&&readv>=1.0);}catch(invalid_argument){}DBestiole::MAX_NU=(valid?readv:defaultvalue=DBestiole::MAX_NU);}
+    else if(paramName=="CLONE_RATE"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=0.1&&readv>=0);}catch(invalid_argument){}DBestiole::CLONE_RATE=(valid?readv:defaultvalue=DBestiole::CLONE_RATE);}
+    else if(paramName=="GENERATION_RATE"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=10.0&&readv>=0);}catch(invalid_argument){}DBestiole::GENERATION_RATE=(valid?readv:defaultvalue=DBestiole::GENERATION_RATE);}
+    else if(paramName=="SURVIVE_COLLISION"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=1.0&&readv>=0);}catch(invalid_argument){}DBestiole::SURVIVE_COLLISION=(valid?readv:defaultvalue=DBestiole::SURVIVE_COLLISION);}
+    else if(paramName=="PROPORTION_CHANGE"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=1.0&&readv>=0);}catch(invalid_argument){}DBestiole::PROPORTION_CHANGE=(valid?readv:defaultvalue=DBestiole::PROPORTION_CHANGE);}
+    else if(paramName=="LIFE"){word=this->readWord(line);try{readv=stoi(word);valid=(readv<=2000&&readv>=20);}catch(invalid_argument){}DBestiole::LIFE=(valid?readv:defaultvalue=DBestiole::LIFE);}
+    else if(paramName=="POPULATION"){word=this->readWord(line);try{readv=stoi(word);valid=(readv<=300&&readv>=0);}catch(invalid_argument){}Population=(valid?readv:defaultvalue=Population);}
+    else if(paramName=="WINDOW_H"){word=this->readWord(line);try{readv=stoi(word);valid=(readv>=400);}catch(invalid_argument){}Width=(valid?readv:defaultvalue=Width);}
+    else if(paramName=="WINDOW_W"){word=this->readWord(line);try{readv=stoi(word);valid=(readv>=400);}catch(invalid_argument){}Height=(valid?readv:defaultvalue=Height);}
+    else{cout<<"ATTENTION: Propriété "<<paramName<<" inconnue..."<<endl;}
+    if(!valid){cout<<"ATTENTION: Valeur illisible ou inappropriée pour la propriété "<<paramName<<": "<<word<<"... valeur remplacée par la valeur prédéfinie"<<defaultvalue<<endl;}
+
 }
