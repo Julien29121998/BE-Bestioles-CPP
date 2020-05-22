@@ -34,13 +34,15 @@ public :
    int getWidth() const { return width; };
    int getHeight() const { return height; };
 
-   void step();
+   void step(std::vector<Factory> nf);
 
    int nbVoisins( const DBestiole* b );
    std::vector<DBestiole*> QuiVoisJe( const DBestiole* b);
    void kill(int id);
    void introduire();
    void handleCollisions(DBestiole* b);
+   void describeMe() const;
+   int Count() const;
 };
 
 

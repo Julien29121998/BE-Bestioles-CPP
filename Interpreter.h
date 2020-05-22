@@ -30,10 +30,10 @@ public:
     Interpreter();
     ~Interpreter();
     void fromFile(string File);
-    double readBType(ifstream& source, string first_line, vector<Factory>& dest);
+    double readBType(istream& source, string first_line, vector<Factory>& dest);
     string readWord(string& source);
 private:
-    void readCaracs(ifstream& source, string first_line, vector<Factory>& dest, double proportion);
+    void readCaracs(istream& source, string first_line, vector<Factory>& dest, double proportion);
     void readCamoParam(string& line,string& word);
     void readCaraParam(string& line,string& word);
     void readNageoParam(string& line,string& word);

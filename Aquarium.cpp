@@ -1,9 +1,10 @@
 #include "Aquarium.h"
 
 #include "Milieu.h"
+#include "Interpreter.h"
 
 
-Aquarium::Aquarium( int target_population,int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
+Aquarium::Aquarium( int target_population,int width, int height, int _delay, Interpreter* interp ) : CImgDisplay(), delay( _delay )
 {
 
    int         screenWidth = 1280; //screen_width();
@@ -12,7 +13,7 @@ Aquarium::Aquarium( int target_population,int width, int height, int _delay ) : 
 
 
    cout << "const Aquarium" << endl;
-
+   myReader = interp;
    flotte = new Milieu( width, height, target_population );
    assign( *flotte, "Simulation d'ecosysteme" );
 
@@ -33,15 +34,13 @@ Aquarium::~Aquarium( void )
 
 void Aquarium::run( void )
 {
+   std::vector<Factory> temp;
 
    cout << "running Aquarium" << endl;
    this->flotte->introduire();
 
    while ( ! is_closed() )
    {
-
-      //iteration de la simulation
-
       if ( is_key() ) {
          cout << "Vous avez presse la touche " << static_cast<unsigned char>( key() );
          cout << " (" << key() << ")" << endl;
@@ -63,13 +62,30 @@ void Aquarium::run( void )
                cout<<"è_é"<<endl;
             }
          }
+         if( is_keyN()){
+            cout<<"Vous avez saisi N: Entrez des instructions de création d'une bestiole, avec une proportion égale au nombre voulu, puis écrivez STOP"<<endl;
+            string line;
+            getline(cin, line);
+            if(myReader->readWord(line)=="Type"){
+            myReader->readBType(cin,line,temp);
+            }
+         cout <<"Simulation en Pause. Appuyez sur SPACEBAR dans la simulation pour reprendre "<<endl;
+         paused=true;
+         }
+         if( is_keyC()){
+            cout<<"Nombre de Créatures :"<<flotte->Count()<<endl;
+         }
+         if( is_keyR()){
+            flotte->describeMe();
+         }
       }
       if(!paused){
-      flotte->step();
+         flotte->step(temp);
+         temp.erase(temp.begin(),temp.end());
       }
       display( *flotte );
       wait( delay );
       
-   } // while
+   }
 
 }

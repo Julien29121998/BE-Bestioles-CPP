@@ -49,7 +49,7 @@ Milieu::~Milieu()
 }
 
 
-void Milieu::step()
+void Milieu::step(std::vector<Factory> nf)
 {
    int pos, diff;
    std::vector<int> toDelete;
@@ -69,6 +69,11 @@ void Milieu::step()
          toDelete.push_back(it-beginit);
       }
 
+   }
+   if(!nf.empty()){
+      for(auto cf=nf.begin();cf!=nf.end();++cf){
+         cf->fillWith(toAdd,static_cast<int>(cf->proportion),*this);
+      }
    }
    pos=0;
    for(std::vector<DBestiole*>::iterator t_it = beginit;t_it!=listeBestioles.end();++t_it){
@@ -161,5 +166,14 @@ void Milieu::handleCollisions(DBestiole* b){
             (*it)->killMe();
          }
       }
+   }
+}
+int Milieu::Count() const{
+   return listeBestioles.size();
+}
+void Milieu::describeMe() const{
+   cout<<"Milieu :"<<endl;
+   for(auto b=listeBestioles.begin();b!=listeBestioles.end();++b){
+      cout<<(*b)->getType()<<endl;
    }
 }

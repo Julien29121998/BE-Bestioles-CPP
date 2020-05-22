@@ -199,3 +199,6 @@ void Bestiole::setCoords(paire_t coords){
    orientation=coords.ori;
    vitesse=coords.vite;
 }
+string Bestiole::getType() const{
+   return "Unimplemented";
+}

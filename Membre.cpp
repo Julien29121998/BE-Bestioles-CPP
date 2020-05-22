@@ -55,3 +55,6 @@ void Membre::killMe(){
 void Membre::setCoords(paire_t coords){
     return mybestiole->setCoords(coords);
 }
+string Membre::getType() const{
+    return mybestiole->getType();
+}

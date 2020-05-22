@@ -30,6 +30,7 @@ public :
    virtual paire_t getCoords() const override;
    virtual void killMe() override;
    virtual void setCoords(paire_t coords) override;
+   virtual string getType() const override;
 };
 
 #endif

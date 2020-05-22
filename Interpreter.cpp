@@ -20,7 +20,7 @@ string Interpreter::readWord(string& line){
     line=line.substr(found+1,line.size());
     return word;
 }
-double Interpreter::readBType(ifstream& source, string first_line, vector<Factory>& dest){
+double Interpreter::readBType(istream& source, string first_line, vector<Factory>& dest){
     double proportion=1.0; 
     string line;
     string word;
@@ -53,7 +53,7 @@ double Interpreter::readBType(ifstream& source, string first_line, vector<Factor
     this->readCaracs(source,line, dest,proportion);
     return proportion;
 }
-void Interpreter::readCaracs(ifstream& source, string first_line, vector<Factory>& dest, double proportion){
+void Interpreter::readCaracs(istream& source, string first_line, vector<Factory>& dest, double proportion){
     bool hasComp=false;
     string line;
     string word;
@@ -163,11 +163,11 @@ void Interpreter::readYeuxParam(string& line,string& word){
 bool Interpreter::readComportParam(string& line,string& word){
     word=this->readWord(line);
     if(word=="Multiple")compm->Comportement=COMP_MULTIPLE;
-    else if(word=="Peurese")compm->Comportement=COMP_PEUREUSE;
+    else if(word=="Peureuse")compm->Comportement=COMP_PEUREUSE;
     else if(word=="Kamikaze")compm->Comportement=COMP_KAMIKAZE;
     else if(word=="Prevoyante"||word=="Prévoyante")compm->Comportement=COMP_PREVOYANTE;
     else if(word=="Gregaire"||word=="Grégaire")compm->Comportement=COMP_GREGAIRE;
-    else {return false;}
+    else {cout<<"Comportement inconnu :"<<word<<endl;return false;}
     compm->Add(paramsf);
     cout<<"Comportement: "<<compm->Comportement<<endl;
     return true;
@@ -195,7 +195,7 @@ void Interpreter::fromFile(string file){
                 }
             }
             isDefined=true;
-            ecosysteme=new Aquarium(Population,Width,Height, 30 );
+            ecosysteme=new Aquarium(Population,Width,Height, 30, this);
             continue;
         }
         else if(word.empty()){cout<<"...";}
