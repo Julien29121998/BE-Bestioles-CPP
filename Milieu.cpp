@@ -1,12 +1,14 @@
 #include "Milieu.h"
 #include "Factory.h"
 #include "Comportement.h"
+#include "Interpreter.h"
 
 #include <cstdlib>
 #include <vector>
 #include <cmath>
 #include <ctime>
-
+#include <fstream>
+#define __END__CSV "\\END__CSV"
 
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 
@@ -28,7 +30,7 @@ Milieu::Milieu( int _width, int _height, int target_population ) : UImg( _width,
    cout << "const Milieu" << endl;
    this->target_pop=target_population;
    std::srand( time(NULL) );
-
+   timer=0;
 }
 
 
@@ -99,7 +101,26 @@ void Milieu::step(std::vector<Factory> nf)
       listeBestioles.push_back(*a_it);
    }
    toAdd.erase(toAdd.begin(),toAdd.end());
-
+   if(timer%10==0){
+      std::ofstream output;
+      std::ifstream header_read;
+      std::string line,word;
+      int found;
+      output.open (Interpreter::OutputFile, std::ios::app);
+      output<<timer<<",";
+      header_read.open(Interpreter::OutputFile);
+      getline(header_read,line);
+      line=line+__END__CSV;
+      header_read.close();
+      auto contenu = this->contenu();
+      found = line.find(","),word=line.substr(0,found), line=line.substr(found+1,line.size());
+      while(found = line.find(","),word=line.substr(0,found), line=line.substr(found+1,line.size()),word!=__END__CSV){
+         output<<contenu.find(word)->second<<",";
+      }
+      output<<endl;
+      output.close();
+   }
+   timer++;
 }
 
 
@@ -176,4 +197,19 @@ void Milieu::describeMe() const{
    for(auto b=listeBestioles.begin();b!=listeBestioles.end();++b){
       cout<<(*b)->getType()<<endl;
    }
+}
+std::map<std::string,int> Milieu::contenu() const{
+   std::map<std::string,int> ans;
+   for(auto lf=listeFactories.begin();lf!=listeFactories.end();++lf){
+      ans.emplace(make_pair(lf->getTypeName(),0));
+   }
+   ans.emplace(make_pair(Interpreter::Others,0));
+   for(auto b=listeBestioles.begin();b!=listeBestioles.end();++b){
+      auto k = ans.find((*b)->getType());
+      if(k==ans.end()){
+         k=ans.find(Interpreter::Others);
+      }
+      k->second+=1;
+   }
+   return ans;
 }

@@ -58,3 +58,6 @@ void Membre::setCoords(paire_t coords){
 string Membre::getType() const{
     return mybestiole->getType();
 }
+void Membre::setType(string type){
+    mybestiole->setType(type);
+}

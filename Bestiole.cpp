@@ -171,12 +171,14 @@ bool Bestiole::vieillir(){
    return false;
 }
 DBestiole* Bestiole::copy(){
-   return new Bestiole(
+   Bestiole* b = new Bestiole(
    this->x+(rand()%3-1)*AFF_SIZE,
    this->y+(rand()%3-1)*AFF_SIZE,
    this->vitesse*(0.92+0.16*(static_cast<double>(rand())/RAND_MAX)),
    this->orientation*(0.92+0.16*(static_cast<double>(rand())/RAND_MAX)),
    this->couleur,this->comportement);
+   b->setType(this->getType());
+   return b;
 }
 void Bestiole::setExterne(DBestiole* p){
    coucheExterne= p;
@@ -200,5 +202,8 @@ void Bestiole::setCoords(paire_t coords){
    vitesse=coords.vite;
 }
 string Bestiole::getType() const{
-   return "Unimplemented";
+   return type;
+}
+void Bestiole::setType(string ntype){
+   this->type=ntype;
 }

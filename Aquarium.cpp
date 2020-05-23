@@ -2,6 +2,7 @@
 
 #include "Milieu.h"
 #include "Interpreter.h"
+#include <fstream>
 
 
 Aquarium::Aquarium( int target_population,int width, int height, int _delay, Interpreter* interp ) : CImgDisplay(), delay( _delay )
@@ -38,6 +39,15 @@ void Aquarium::run( void )
 
    cout << "running Aquarium" << endl;
    this->flotte->introduire();
+   std::ofstream file;
+   file.open (Interpreter::OutputFile);
+   file<<"timer,"<<Interpreter::Others<<",";
+   std::vector<Factory> contenu = this->flotte->listeFactories;
+   for(auto cc=contenu.begin();cc!=contenu.end();++cc){
+      file<<cc->getTypeName()<<",";
+   }
+   file<<endl;
+   file.close();
 
    while ( ! is_closed() )
    {
@@ -73,10 +83,10 @@ void Aquarium::run( void )
          paused=true;
          }
          if( is_keyC()){
-            cout<<"Nombre de Créatures :"<<flotte->Count()<<endl;
+            cout<<"Nombre de Créatures :"<<flotte->Count()<<endl;wait(10*delay);
          }
          if( is_keyR()){
-            flotte->describeMe();
+            flotte->describeMe();wait(10*delay);
          }
       }
       if(!paused){

@@ -44,6 +44,12 @@
         Si vous voulez, nettoyez les objets <code>:$ make clean</code>
     </li>
     <li>
+        Le Paramétrage de la simulation se fait via le fichier <b class="file">"InputData.txt"</b>.
+    </li>
+    <li>
+        La récupération des résultats de la simulation se fait dans le fichier <b class="file">"Output.csv"</b>.
+    </li>   
+    <li>
         Pour Désinstaller <code>:$ make clean-all</code>
     </li>
 </ul>
@@ -58,7 +64,7 @@
 </ul>
 <h2>SYNTAXE DE PARAMETRAGE DE LA SIMULATION</h2>
 <ul>
-    <li>Le fichier à modifier est <b class="file">"InputData.txt"</b> pour le paramétrage initial de la simulation.</li>
+    <li>Le fichier à modifier est <b class="file">"InputData.txt"</b> pour le paramétrage initial de la simulation. Les résultats sont stockés dans <b class="file">"Output.csv"</b></li>
     <li>Les sauts de ligne sont requis entre chaque instruction et on ne peut pas enchaîner plusieurs instructions sur une même ligne. Il est recommandé de ne pas écrire à la suite d'instructions, sur la même ligne, cela pouvant avoir des effets inattendus, allant d'aucun effet à un arrêt de la lecture des instructions.</li>
     <li>Il est impossible de couper une instruction et de la répartir sur plusieurs lignes. Il est possible Néanmoins de sauter autant de lignes que l'on souhaite entre chaque instruction.</li>
     <li>Les indentations sont prohibées, ainsi que les caractères d'espacement à la fin des lignes.</li>

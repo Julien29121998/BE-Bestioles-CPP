@@ -87,6 +87,7 @@ public :
    virtual void killMe()=0;
    virtual void setCoords(paire_t coords)=0;
    virtual string getType() const=0;
+   virtual void setType(string type)=0;
 
 };
 

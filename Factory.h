@@ -20,9 +20,10 @@ using namespace std;
 class Factory final{
 private:
     Param_Dict myParams;
+    string type;
 public:
     double proportion;
-    Factory(Param_Dict params,const double proportion);
+    Factory(Param_Dict params,const double proportion,string type);
     Factory(const Factory& f);
     Factory& operator= (Factory f);
     void setParams(Param_Dict params);
@@ -30,5 +31,6 @@ public:
     ~Factory();
     static void drop(Param_Dict& pmd);
     void Drop();
+    string getTypeName() const;
 };
 #endif

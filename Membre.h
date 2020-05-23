@@ -31,6 +31,7 @@ public :
    virtual void killMe() override;
    virtual void setCoords(paire_t coords) override;
    virtual string getType() const override;
+   virtual void setType(string type) override;
 };
 
 #endif

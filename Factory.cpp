@@ -1,7 +1,7 @@
 #include "Factory.h"
 #define cond (it!=endit)
 
-Factory::Factory(Param_Dict params,const double prop): proportion(prop){
+Factory::Factory(Param_Dict params,const double prop,string type): type(type),proportion(prop){
     cout<<"const Factory"<<endl;
     this->setParams(params);
 }
@@ -21,7 +21,7 @@ void Factory::setParams(Param_Dict params){
     }
 }
 
-Factory::Factory(const Factory& f):Factory(f.myParams,f.proportion){
+Factory::Factory(const Factory& f):Factory(f.myParams,f.proportion,f.type){
     cout<<"(par copie)"<<endl;
 }
 
@@ -79,10 +79,14 @@ void Factory::fillWith(vector<DBestiole*>& toFill, int count, Milieu& monMilieu)
          dynamic_cast<YeuxParams*>(it->second)->alpha);
       }
       bo->setExterne(bo);
+      bo->setType(type);
       bo->initCoords(monMilieu.getWidth(),monMilieu.getHeight());
       toFill.push_back(bo);
     }
 
+}
+string Factory::getTypeName() const{
+    return type;
 }
 
 

@@ -4,6 +4,9 @@
 
 using namespace std;
 
+const string Interpreter::OutputFile="Output.csv";
+const string Interpreter::Others="Autres";
+
 Interpreter::Interpreter(){
    cpm = new CamoParams;kpm = new CaraParams;npm = new NageoParams;
    opm = new OreParams;ypm = new YeuxParams;compm = new ComportParams;
@@ -24,12 +27,19 @@ double Interpreter::readBType(istream& source, string first_line, vector<Factory
     double proportion=1.0; 
     string line;
     string word;
+    string type;
     line=first_line;
     word=this->readWord(line);
     if(word!="p:"){
-        cout<<"Lecture du type "<<word<<":"<<endl;
+        type=word;
         word=this->readWord(line);
     }
+    else{
+        char _type[16];
+        sprintf(_type,"t%d",rand()%1000000);
+        type=string(_type);
+    }
+    cout<<"Lecture du type "<<type<<":"<<endl;
     this->paramsf.erase(paramsf.begin(),paramsf.end());
     if(word!="p:"){
         cout<<"ATTENTION: Pas de proportion... par défaut 1, risque de produire des résultats non demandés !"<<endl;
@@ -50,10 +60,10 @@ double Interpreter::readBType(istream& source, string first_line, vector<Factory
         cout<<"ATTENTION: Contenu non lu: "<<word<<"... Sur la ligne, rien ne doit suivre la déclaration de type de bestiole"<<endl;
     }
     while(getline(source,line),line.empty()){cout<<"...";}
-    this->readCaracs(source,line, dest,proportion);
+    this->readCaracs(source,line, dest,proportion,type);
     return proportion;
 }
-void Interpreter::readCaracs(istream& source, string first_line, vector<Factory>& dest, double proportion){
+void Interpreter::readCaracs(istream& source, string first_line, vector<Factory>& dest, double proportion, string type){
     bool hasComp=false;
     string line;
     string word;
@@ -72,7 +82,7 @@ void Interpreter::readCaracs(istream& source, string first_line, vector<Factory>
     if(!hasComp){
         cout<<"ATTENTION: Pas de Comportement Déclaré pour ce type de Bestiole: ce type de Bestioles aura le comportement par défaut"<<endl;
     }
-    Factory fact = Factory(paramsf,proportion);
+    Factory fact = Factory(paramsf,proportion,type);
     dest.push_back(fact);
     while(!(word=="Stop"||word=="STOP")){
         if(word=="Bestioles")continue;
@@ -206,13 +216,14 @@ void Interpreter::fromFile(string file){
         getline(input,line),word=this->readWord(line);
 
     }
-if(sum!=1.){
-    cout<<"ATTENTION: la Somme des Proportions n'est pas 1 ("<<sum<<"). Effectifs réels des Bestiole Indéfini (Sera supérieur ou inférieur à la valeur donnée)..."<<endl;
-}
-if(ecosysteme!=nullptr){
-    cout<<"DEBUT DE LA SIMULATION"<<endl;
-    ecosysteme->run();
-}
+    if(sum!=1.){
+        cout<<"ATTENTION: la Somme des Proportions n'est pas 1 ("<<sum<<"). Effectifs réels des Bestiole Indéfini (Sera supérieur ou inférieur à la valeur donnée)..."<<endl;
+    }
+    input.close();
+    if(ecosysteme!=nullptr){
+        cout<<"DEBUT DE LA SIMULATION"<<endl;
+        ecosysteme->run();
+    }
 }
 void Interpreter::readProp(string& line){
     string word="Propriété Introuvable";

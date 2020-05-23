@@ -21,8 +21,8 @@ private :
    double            vitesse;
    DBestiole*        coucheExterne;
    IComportement*    comportement;
-
-   T               * couleur;
+   T*                couleur;
+   string            type;
 
 public :                                        
    Bestiole(IComportement* comp);     
@@ -43,6 +43,7 @@ public :
    virtual void killMe() override;
    virtual void setCoords(paire_t coords) override;
    virtual string getType() const override;
+   virtual void setType(string ntype) override;
 
 };
 

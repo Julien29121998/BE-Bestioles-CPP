@@ -6,6 +6,7 @@
 #include "DBestiole.h"
 #include <iostream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ private :
 
    int                       width, height;
    int                       target_pop;
+   int                       timer;
 
    std::vector<DBestiole*>   listeBestioles;
 
@@ -43,6 +45,7 @@ public :
    void handleCollisions(DBestiole* b);
    void describeMe() const;
    int Count() const;
+   std::map<std::string,int> contenu() const;
 };
 
 

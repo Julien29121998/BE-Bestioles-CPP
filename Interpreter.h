@@ -13,6 +13,9 @@
 #include "Oreilles.h"
 
 struct Interpreter final{
+public:
+    static const string OutputFile;
+    static const string Others;
 private:
     Param_Dict paramsf;
     CamoParams* cpm;
@@ -33,7 +36,7 @@ public:
     double readBType(istream& source, string first_line, vector<Factory>& dest);
     string readWord(string& source);
 private:
-    void readCaracs(istream& source, string first_line, vector<Factory>& dest, double proportion);
+    void readCaracs(istream& source, string first_line, vector<Factory>& dest, double proportion, string type);
     void readCamoParam(string& line,string& word);
     void readCaraParam(string& line,string& word);
     void readNageoParam(string& line,string& word);
