@@ -287,7 +287,7 @@
         <td>Pourcentage maximal de modification de sa vitesse pour une bestiole (sans collision). Non-Inertie</td>
         <td>0</td>
         <td>1.0</td>
-        <td>0.197</td>
+        <td>0.207</td>
     </tr>
 </table>
 <h2>TABLEAU DES CARACTERISTIQUES</h2>

@@ -23,7 +23,7 @@ double       DBestiole::MAX_NU =2.7;
 double       DBestiole::CLONE_RATE = 0.0008;
 double       DBestiole::GENERATION_RATE = 3.26;
 double       DBestiole::SURVIVE_COLLISION=0.88;
-double       DBestiole::PROPORTION_CHANGE=0.197;
+double       DBestiole::PROPORTION_CHANGE=0.207;
 int          DBestiole::LIFE = 660;
 long int           DBestiole::next = 0;
 

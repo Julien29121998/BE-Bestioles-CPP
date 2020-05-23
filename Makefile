@@ -49,7 +49,7 @@ author:
 	echo "\nAUTHORS: GROUPE 4 (Rouge) - Projet  * Mehdi Hajjam - Wadia Ferjani - Anass Benfathallah - Julien Bénard"
 
 info:
-	echo "\n\n\n\nVeuillez lancer le programme avec ./main\n\n\n"
+	echo "\n\n\n\n LISEZ LE README \n\n\n"
 
 clean:
 	rm -rf *.o;

@@ -245,8 +245,8 @@ void Interpreter::readProp(string& line){
     else if(paramName=="PROPORTION_CHANGE"){word=this->readWord(line);try{readv=stod(word);valid=(readv<=1.0&&readv>=0);}catch(invalid_argument){}DBestiole::PROPORTION_CHANGE=(valid?readv:defaultvalue=DBestiole::PROPORTION_CHANGE);}
     else if(paramName=="LIFE"){word=this->readWord(line);try{readv=stoi(word);valid=(readv<=2000&&readv>=20);}catch(invalid_argument){}DBestiole::LIFE=(valid?readv:defaultvalue=DBestiole::LIFE);}
     else if(paramName=="POPULATION"){word=this->readWord(line);try{readv=stoi(word);valid=(readv<=300&&readv>=0);}catch(invalid_argument){}Population=(valid?readv:defaultvalue=Population);}
-    else if(paramName=="WINDOW_H"){word=this->readWord(line);try{readv=stoi(word);valid=(readv>=400);}catch(invalid_argument){}Width=(valid?readv:defaultvalue=Width);}
-    else if(paramName=="WINDOW_W"){word=this->readWord(line);try{readv=stoi(word);valid=(readv>=400);}catch(invalid_argument){}Height=(valid?readv:defaultvalue=Height);}
+    else if(paramName=="WINDOW_W"){word=this->readWord(line);try{readv=stoi(word);valid=(readv>=400);}catch(invalid_argument){}Width=(valid?readv:defaultvalue=Width);}
+    else if(paramName=="WINDOW_H"){word=this->readWord(line);try{readv=stoi(word);valid=(readv>=400);}catch(invalid_argument){}Height=(valid?readv:defaultvalue=Height);}
     else{cout<<"ATTENTION: Propriété "<<paramName<<" inconnue..."<<endl;}
     if(!valid){cout<<"ATTENTION: Valeur illisible ou inappropriée pour la propriété "<<paramName<<": "<<word<<"... valeur remplacée par la valeur prédéfinie "<<defaultvalue<<endl;}
 
