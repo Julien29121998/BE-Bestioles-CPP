@@ -291,7 +291,43 @@
     </tr>
 </table>
 <h2>TABLEAU DES CARACTERISTIQUES</h2>
-Soon ! 
+<table>
+    <tr>
+    <th>Caractéristique</th>
+    <th>Effet</th>
+    <th>Paramètres</th>
+    </tr>
+    <tr>
+    <th>Camouflages</th>
+    <td>Réduit la visibilité de la Bestiole</td>
+    <td><table><tr><th>Phi</th><td>Facteur de Camouflage</td><td>[MIN_PHI; MAX_PHI]</td></tr></table></td>
+    </tr>
+    <tr>
+    <th>Carapace</th>
+    <td>Réduit la probabilité de mort de Bestiole lors des chocs. Ralentit la Bestiole.</td>
+    <td><table><tr><th>Omega</th><td>Facteur de Protection</td><td>[1.0; MAX_OMEGA]</td></tr><tr><th>Eta</th><td>Facteur de Ralentissement</td><td>[1.0; MAX_ETA]</td></tr></table></td>
+    </tr>
+    <tr>
+    <th>Nageoire</th>
+    <td>Augmente la vitesse de la bestiole.</td>
+    <td><table><tr><th>Nu</th><td>Coefficient d'accélération</td><td>[1.0; MAX_NU]</td></tr></table></td>
+    </tr>
+    <tr>
+    <th>Oreilles</th>
+    <td>Permet à la bestiole de percevoir les autres bestioles dans un rayon autour d'elle.</td>
+    <td><table><tr><th>Delta</th><td>Distance maximale de perception</td><td>[MIN_DELTA_O; MAX_DELTA_O]</td></tr><tr><th>Gamma</th><td>Efficacité de la perception</td><td>[MIN_GAMMA_O; MAX_GAMMA_O]</td></tr></table></td>
+    </tr>
+    <tr>
+    <th>Yeux</th>
+    <td>Permet à la bestiole de percevoir les autres bestioles dans un secteur angulaire devant elle.</td>
+    <td><table><tr><th>Delta</th><td>Distance maximale de perception</td><td>[MIN_DELTA_Y; MAX_DELTA_Y]</td></tr><tr><th>Gamma</th><td>Efficacité de la perception</td><td>[MIN_GAMMA_Y; MAX_GAMMA_Y]</td></tr><tr><th>Alpha</th><td>Angle du secteur de perception</td><td>[MIN_ALPHA; MAX_ALPHA]</td></tr></table></td>
+    </tr>
+    <tr>
+    <th>Comportement</th>
+    <td>Détermine les actions de la Bestiole:</td>
+    <td><table><tr><th>Multiple</th><td>La bestiole change de comportement régulièrement parmi les autres comportements</td><td>N°-1</td></tr><tr><th>Peureuse</th><td>La bestiole fuit dès qu'elle détecte trop de bestioles proches</td><td>N°0</td></tr><tr><th>Kamikaze</th><td>La bestiole ralentit puis attaque à toute vitesse la bestiole la plus proche</td><td>N°1</td></tr><tr><th>Prévoyante</th><td>La bestiole tourne à gauche ou à droite pour éviter les collisions</td><td>N°2</td></tr><tr><th>Grégaire</th><td>La bestiole s'adapte à la vitesse de ses voisines.</td><td>N°3</td></tr></table></td>
+    </tr>
+</table>
 <h2>EXEMPLE DE PARAMETRAGE</h2>
 
 <code>
