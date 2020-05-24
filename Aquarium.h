@@ -12,7 +12,7 @@ using namespace cimg_library;
 class Milieu;
 struct Interpreter;
 
-
+/** L'Aquarium contenant le milieu de simulation*/
 class Aquarium : public CImgDisplay
 {
 
@@ -23,11 +23,15 @@ private :
    Interpreter   *myReader;
 
 public :
+   /**Constructeur d'Aquarium*/
    Aquarium( int pop,int width, int height, int _delay, Interpreter* interp);
+   /**Destructeur d'Aquarium*/
    ~Aquarium( void );
 
+   /**getter du milieu*/
    Milieu & getMilieu( void ) { return *flotte; }
 
+   /*Lancer la simulation*/
    void run( void );
 
 };

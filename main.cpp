@@ -19,8 +19,8 @@ using namespace std;
 
 int main()
 {
-   Interpreter i;
-   i.fromFile("InputData.txt");
+   Interpreter i;//On crée un interpréteur
+   i.fromFile("InputData.txt");//On exploite InputData.txt
    return 0;
 
 }

@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <cmath>
 #include "Milieu.h"
-
+//Valeurs standard des paramètres de simulation
 double       DBestiole::AFF_SIZE = 8.;
 double       DBestiole::MAX_VITESSE = 6.5;
 double       DBestiole::MAX_PHI =1.;
@@ -25,33 +25,35 @@ double       DBestiole::GENERATION_RATE = 3.26;
 double       DBestiole::SURVIVE_COLLISION=0.88;
 double       DBestiole::PROPORTION_CHANGE=0.207;
 int          DBestiole::LIFE = 660;
+//On commence à compter à 0
 long int           DBestiole::next = 0;
 
-BParams::BParams(){cout<<"p@"<<(this)<<endl;}
-BParams::~BParams(){cout<<"~p@"<<(this)<<endl;}
+//construction et Destruction de Paramètres
+BParams::BParams(){/*cout<<"p@"<<(this)<<endl;*/}
+BParams::~BParams(){/*cout<<"~p@"<<(this)<<endl;*/}
 
-void BParams::PushWith(string key, Param_Dict& pd){
-    pd.emplace(make_pair(key,this));
+void BParams::PushWith(string key, Param_Dict& pd){//Ajouter des paramètres à un dictionnaire avec une clé string
+    pd.emplace(make_pair(key,this));//on ajoute au dictionnaire avec la clé voulue
 }
 
-DBestiole::DBestiole()
+DBestiole::DBestiole()//Constructeur
 {
 
-   identite = ++next;
-   cout << "const DBestiole (" << identite << ") par defaut : ";
+   identite = ++next;//On s'attribue l'identité, et la suivante s'incrémente aussi
+   //cout << "const DBestiole (" << identite << ") par defaut : ";
    
 }
 
-DBestiole::~DBestiole()
+DBestiole::~DBestiole()//Destructeur
 {
 
-   cout << "dest DBestiole" << identite << endl;
+  // cout << "dest DBestiole" << identite << endl;
 
 }
 
-char* DBestiole::showID() const{
+char* DBestiole::showID() const{//On récupère l'ID de cette bestiole
    static char id[64];
-   sprintf(id, "%ld", identite);
-   return id;
+   sprintf(id, "%ld", identite);//conversion en string
+   return id;//retour
 }
 

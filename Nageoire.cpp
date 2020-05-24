@@ -4,47 +4,47 @@
 #include <cmath>
 #include "Milieu.h"
 
-void NageoParams::Add(Param_Dict& pd)
+void NageoParams::Add(Param_Dict& pd)//Ajout des paramètres de nageoires au dictionnaire de paramètres
 {
-    PushWith(string("Nageoire"),pd);
+    PushWith(string("Nageoire"),pd);//Ajout en tant que paramètres
 }
 
-BParams* NageoParams::cppm() const{
+BParams* NageoParams::cppm() const{//Copie des paramètres de nageoires
    NageoParams* p = new NageoParams();
    p->nu=this->nu;
-   return p;
+   return p;//retourne des paramètres
 }
-Nageoire::Nageoire(DBestiole* dbestiole,double nu):Membre(dbestiole),nu(((nu>MAX_NU)?MAX_NU:((nu<1)?1:nu)))
+Nageoire::Nageoire(DBestiole* dbestiole,double nu):Membre(dbestiole),nu(((nu>MAX_NU)?MAX_NU:((nu<1)?1:nu)))//Constructeur de nageoires - on vérifie que les valeurs sont dans l'intervalle
 {
-   cout<<"const Nageoire"<<endl;
+   //cout<<"const Nageoire"<<endl;
 }     
-Nageoire::~Nageoire()
+Nageoire::~Nageoire()//Destructeur Nageoire
 {
-   cout<<"dest Nageoire et ";
+   //cout<<"dest Nageoire et ";
 
 }                              
-void Nageoire::draw( UImg & support )
+void Nageoire::draw( UImg & support )//Dessiner les nageoires
 {
-   Membre::draw(support);
-   paire_t coords = getCoords();
-   T* grey = new T[ 3 ];
-   grey[0]=92+38*(1-nu/MAX_NU);
-   grey[1]=92+38*(1-nu/MAX_NU);
-   grey[2]=92+38*(1-nu/MAX_NU);
-   double xq = coords.x - cos( coords.ori)*AFF_SIZE/1.1;
-   double yq = coords.y - sin( coords.ori)*AFF_SIZE/1.1;
-   double xm = xq - cos( coords.ori)*AFF_SIZE/1.8;
-   double ym = yq - sin( coords.ori)*AFF_SIZE/1.8;
-   double xd = -sin(coords.ori)*AFF_SIZE/3.1;
-   double yd = cos(coords.ori)*AFF_SIZE/3.1;
-   support.draw_triangle(xq,yq,xm+xd,ym+yd,xm-xd,ym-yd,grey);
+   Membre::draw(support);//on dessine le reste
+   paire_t coords = getCoords();//on récupère mes coordonnées
+   T* grey = new T[ 3 ];//couleur grise
+   grey[0]=92+38*(1-nu/MAX_NU);//gris dont l'intensité dépend de l'efficacité de la nageoire
+   grey[1]=92+38*(1-nu/MAX_NU);//gris dont l'intensité dépend de l'efficacité de la nageoire
+   grey[2]=92+38*(1-nu/MAX_NU);//gris dont l'intensité dépend de l'efficacité de la nageoire
+   double xq = coords.x - cos( coords.ori)*AFF_SIZE/1.1;//bout du corps de la bestiole
+   double yq = coords.y - sin( coords.ori)*AFF_SIZE/1.1;//bout du corps de la bestiole
+   double xm = xq - cos( coords.ori)*AFF_SIZE/1.8;//longueur de la nageoire
+   double ym = yq - sin( coords.ori)*AFF_SIZE/1.8;//longueur de la nageoire
+   double xd = -sin(coords.ori)*AFF_SIZE/3.1;//largeur de la nageoire par rapport à l'axe
+   double yd = cos(coords.ori)*AFF_SIZE/3.1;//largeur de la nageoire par rapport à l'axe
+   support.draw_triangle(xq,yq,xm+xd,ym+yd,xm-xd,ym-yd,grey);//On dessine le triangle
 
 }
-void Nageoire::bouge(Milieu& monMilieu,double coef, paire_t objectif){
-   Membre::bouge(monMilieu, nu * coef, objectif);
+void Nageoire::bouge(Milieu& monMilieu,double coef, paire_t objectif){//Bouger la Bestiole avec la nageoire
+   Membre::bouge(monMilieu, nu * coef, objectif);//déplacement normal, multiplié par le facteur de la nageoire
 }
 
-DBestiole* Nageoire::copy()
+DBestiole* Nageoire::copy()//copier la nageoire
 {
-   return new Nageoire(Membre::copy(),nu);
+   return new Nageoire(Membre::copy(),nu);//on renvoie la nouvelle nageoire
 }
