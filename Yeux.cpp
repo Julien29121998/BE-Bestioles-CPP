@@ -57,7 +57,7 @@ void Yeux::draw( UImg & support )//Affichage des yeux
    double yty = coords.y + sin(coords.ori)*AFF_SIZE;//position à l'avant de la tête
    double xd = -sin(coords.ori)*AFF_SIZE/3.5;//position des yeux orthogonalement par rapport à l'axe
    double yd = cos(coords.ori)*AFF_SIZE/3.5;//position des yeux orthogonalement par rapport à l'axe
-   T* blue = new T[ 3 ];//bleu des yeux
+   T blue[ 3 ];//bleu des yeux
    blue[0]=4;//bleu des yeux
    blue[1]=38;//bleu des yeux
    blue[2]=129;//bleu des yeux

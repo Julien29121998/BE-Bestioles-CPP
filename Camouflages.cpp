@@ -28,7 +28,7 @@ void Camouflages::draw( UImg & support )//Dessiner des camouflages
 {
    Membre::draw(support);//On dessine le reste
    paire_t coords = getCoords();//mes coordonnées
-   T* green = new T[ 3 ];//Vert
+   T green[3];//Vert
    green[0]=static_cast<int>(68*(1-phi/2));//vert d'intensité dépendant de l'efficacité
    green[1]=static_cast<int>(218*(1-phi/2));//vert d'intensité dépendant de l'efficacité
    green[2]=static_cast<int>(66*(1-phi/2));//vert d'intensité dépendant de l'efficacité

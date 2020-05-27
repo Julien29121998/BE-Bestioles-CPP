@@ -27,7 +27,7 @@ void Nageoire::draw( UImg & support )//Dessiner les nageoires
 {
    Membre::draw(support);//on dessine le reste
    paire_t coords = getCoords();//on récupère mes coordonnées
-   T* grey = new T[ 3 ];//couleur grise
+   T grey[ 3 ];//couleur grise
    grey[0]=92+38*(1-nu/MAX_NU);//gris dont l'intensité dépend de l'efficacité de la nageoire
    grey[1]=92+38*(1-nu/MAX_NU);//gris dont l'intensité dépend de l'efficacité de la nageoire
    grey[2]=92+38*(1-nu/MAX_NU);//gris dont l'intensité dépend de l'efficacité de la nageoire

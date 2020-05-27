@@ -43,7 +43,7 @@ void Oreilles::draw( UImg & support )//dessiner les oreilles
    double yt = coords.y + sin(coords.ori)*AFF_SIZE/2.1;//coordonées de la tête
    double xd = -sin(coords.ori)*AFF_SIZE/1.8;//position normale par rapport à l'axe de la bestiole
    double yd = cos(coords.ori)*AFF_SIZE/1.8;//position normale par rapport à l'axe de la bestiole
-   T* red = new T[ 3 ];//Couleur rouge des oreilles
+   T red[ 3 ];//Couleur rouge des oreilles
    red[0]=182;//Couleur rouge des oreilles
    red[1]=10;//Couleur rouge des oreilles
    red[2]=10;//Couleur rouge des oreilles

@@ -133,7 +133,7 @@ void Bestiole::draw( UImg & support )//dessiner une bestiole
 
    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., orientation/M_PI*180., couleur );//corps
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );//tête
-   T* kindawhite = new T[ 3 ];//etiquette
+   T kindawhite[3];//etiquette
    kindawhite[0]=241;//etiquette
    kindawhite[1]=241;//etiquette
    kindawhite[2]=241;//etiquette

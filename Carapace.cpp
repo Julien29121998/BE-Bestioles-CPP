@@ -31,7 +31,7 @@ void Carapace::draw( UImg & support )//dessiner une carapace
 {
    Membre::draw(support);//on dessine le reste
    paire_t coords = getCoords();//ma position
-   T* lightbrown = new T[ 3 ];//brun
+   T lightbrown[ 3 ];//brun
    lightbrown[0]=150-38*(omega/MAX_OMEGA);//brun d'intensité variant selon l'efficacité
    lightbrown[1]=112;//brun d'intensité variant selon l'efficacité
    lightbrown[2]=22+60*(1-(eta/MAX_ETA));//brun d'intensité variant selon l'efficacité
