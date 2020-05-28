@@ -180,10 +180,10 @@ void Milieu::handleCollisions(DBestiole* b){//gérer les collisions avec une bes
          b->setCoords(myCoords);//attribution des coordonnées
          (*it)->setCoords(theirCoords);//attribution des coordonnées
 
-         if((static_cast<double>(std::rand())/RAND_MAX)/(b->getResist())>=DBestiole::SURVIVE_COLLISION){
+         if((static_cast<double>(std::rand())/RAND_MAX)/std::sqrt(b->getResist())>=DBestiole::SURVIVE_COLLISION){
             b->killMe();//si le tirage aléatoire est plus élevé que les chances de survies, alors on tue la bestiole
          }
-         if((static_cast<double>(std::rand())/RAND_MAX)/((*it)->getResist())>=DBestiole::SURVIVE_COLLISION){
+         if((static_cast<double>(std::rand())/RAND_MAX)/std::sqrt((*it)->getResist())>=DBestiole::SURVIVE_COLLISION){
             (*it)->killMe();//si le tirage aléatoire est plus élevé que les chances de survies, alors on tue la bestiole
          }
       }
