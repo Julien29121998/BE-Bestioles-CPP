@@ -29,8 +29,9 @@
     }
 </style>
 <h1>BESTIOLES</h1>
+<p> Le sujet du projet est dans Sujet.pdf </p>
+
 <p style="color:red">GROUPE 4</p>
-<p> Le sujet du brojet est dans Sujet.pdf </p>
 <i> Mehdi Hajjam - Wadia Ferjani - Anass Benfathallah - Julien Bénard</i>
 
 <h2>INSTALLER</h2>
